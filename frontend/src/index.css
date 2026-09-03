@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@theme {
+  /* Earthy, evidence-grounded palette — see design plan */
+  --color-soil-950: #1b1712;
+  --color-soil-900: #241f18;
+  --color-soil-800: #332b20;
+  --color-bark-700: #4a4032;
+  --color-bark-500: #776a54;
+  --color-parchment-100: #f4efe4;
+  --color-parchment-50: #faf7ef;
+  --color-leaf-700: #35603f;
+  --color-leaf-600: #427a4d;
+  --color-leaf-500: #55925f;
+  --color-leaf-100: #dceadd;
+  --color-clay-600: #b3552f;
+  --color-sky-600: #3d6f8a;
+  --color-amber-500: #c98a2b;
+
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-body: "Inter", "Helvetica Neue", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+html {
+  font-family: var(--font-body);
+}
