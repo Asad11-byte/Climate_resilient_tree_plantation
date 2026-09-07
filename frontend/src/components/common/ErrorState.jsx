@@ -27,7 +27,7 @@ export default function ErrorState({ error, onRetry, className = "" }) {
       {onRetry && (
         <button
           onClick={onRetry}
-          className="mt-3 rounded-md border border-soil-800/20 bg-parchment-50 px-3 py-1.5 text-sm font-medium text-soil-900 transition hover:border-soil-800/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-leaf-600"
+          className="mt-3 rounded-md border border-soil-800/20 bg-page px-3 py-1.5 text-sm font-medium text-soil-900 transition hover:border-soil-800/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-leaf-600"
         >
           Try again
         </button>

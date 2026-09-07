@@ -26,7 +26,7 @@ export default function KnowledgeSources() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="e.g. soil salinity, drought-tolerant species, rainfall patterns…"
-          className="flex-1 rounded-lg border border-bark-500/25 bg-white px-4 py-2.5 text-sm text-soil-900 placeholder:text-bark-500/70 focus:border-leaf-600 focus:outline-none focus:ring-1 focus:ring-leaf-600"
+          className="flex-1 rounded-lg border border-bark-500/25 bg-card px-4 py-2.5 text-sm text-soil-900 placeholder:text-bark-500/70 focus:border-leaf-600 focus:outline-none focus:ring-1 focus:ring-leaf-600"
         />
         <button
           type="submit"

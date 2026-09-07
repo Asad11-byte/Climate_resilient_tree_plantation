@@ -1,6 +1,6 @@
 export default function SourceResultCard({ source }) {
   return (
-    <div className="rounded-lg border border-bark-500/15 bg-white/50 p-4">
+    <div className="rounded-lg border border-bark-500/15 bg-card/50 p-4">
       <div className="flex items-start justify-between gap-3">
         <p className="font-medium text-soil-900">{source.title || source.document_id}</p>
         {source.year && <span className="shrink-0 text-sm text-bark-500">{source.year}</span>}

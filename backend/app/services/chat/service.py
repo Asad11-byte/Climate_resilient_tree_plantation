@@ -10,13 +10,14 @@ never a model guess dressed up as a grounded answer.
 from dataclasses import dataclass, field
 from typing import List, Optional
 
-from app.core.exceptions import InsufficientEvidenceError
+from app.core.exceptions import InsufficientEvidenceError, ProviderUnavailableError
 from app.core.logging import get_logger
 from app.services.citations.builder import Source, build_sources
 from app.services.context.assembler import format_environmental_context, format_evidence
+from app.services.environment.service import EnvironmentDataService
 from app.services.llm.base import LLMProvider
 from app.services.llm.prompts import GROUNDED_SYSTEM_PROMPT, build_user_prompt
-from app.services.query.classifier import classify_query
+from app.services.query.classifier import classify_query, is_greeting
 from app.services.retrieval.service import RetrievalService
 
 logger = get_logger(__name__)
@@ -38,9 +39,36 @@ class ChatResult:
 
 
 class ChatService:
-    def __init__(self, retrieval_service: RetrievalService, llm_provider: LLMProvider):
+    def __init__(
+        self,
+        retrieval_service: RetrievalService,
+        llm_provider: LLMProvider,
+        environment_service: Optional[EnvironmentDataService] = None,
+    ):
         self._retrieval = retrieval_service
         self._llm = llm_provider
+        self._environment = environment_service
+
+    async def _build_environmental_context(
+        self, latitude: Optional[float], longitude: Optional[float]
+    ) -> str:
+        if latitude is None or longitude is None or self._environment is None:
+            return format_environmental_context(latitude, longitude)
+
+        try:
+            result = await self._environment.get_environment(latitude, longitude)
+        except ProviderUnavailableError:
+            # A broken environment provider shouldn't take down the whole
+            # chat request — fall back to the "not available" framing, same
+            # as a genuine cache+live miss.
+            logger.warning("Environment lookup failed for chat request, degrading gracefully")
+            return format_environmental_context(latitude, longitude, environmental_available=False)
+
+        return format_environmental_context(
+            latitude, longitude,
+            environmental_record=result.record,
+            environmental_available=result.available,
+        )
 
     async def chat(
         self,
@@ -51,6 +79,25 @@ class ChatService:
     ) -> ChatResult:
         category = classify_query(query)
 
+        if is_greeting(query):
+            # Skip retrieval entirely for greetings/small talk — there's no
+            # evidence question to answer, and running retrieval would just
+            # hit InsufficientEvidenceError and return the generic
+            # "no evidence" message instead of a proper introduction. The
+            # system prompt's "Greetings and small talk" section handles the
+            # actual response; we still call Groq so the wording is natural
+            # and consistent, just with no retrieved evidence in context.
+            environmental_text = await self._build_environmental_context(latitude, longitude)
+            user_prompt = build_user_prompt(query, environmental_text, "No evidence retrieved.")
+            response = await self._llm.generate(GROUNDED_SYSTEM_PROMPT, user_prompt)
+            return ChatResult(
+                query_category=category,
+                evidence_available=True,
+                answer=response.text,
+                sources=[],
+                model=response.model,
+            )
+
         try:
             chunks = await self._retrieval.retrieve(query, top_k=top_k)
         except InsufficientEvidenceError:
@@ -60,7 +107,7 @@ class ChatService:
             )
 
         evidence_text = format_evidence(chunks)
-        environmental_text = format_environmental_context(latitude, longitude)
+        environmental_text = await self._build_environmental_context(latitude, longitude)
         user_prompt = build_user_prompt(query, environmental_text, evidence_text)
 
         response = await self._llm.generate(GROUNDED_SYSTEM_PROMPT, user_prompt)

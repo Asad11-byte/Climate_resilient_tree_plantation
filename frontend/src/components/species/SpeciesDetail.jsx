@@ -26,7 +26,7 @@ export default function SpeciesDetail({ species }) {
         <p className="mt-4 text-sm italic text-bark-500">{fieldValue(null)}</p>
       )}
 
-      <dl className="mt-6 divide-y divide-bark-500/10 rounded-lg border border-bark-500/15 bg-white/50">
+      <dl className="mt-6 divide-y divide-bark-500/10 rounded-lg border border-bark-500/15 bg-card/50">
         {ROWS.map(([label, key]) => (
           <div key={key} className="grid grid-cols-[180px_1fr] gap-4 px-4 py-3">
             <dt className="text-sm text-bark-700">{label}</dt>

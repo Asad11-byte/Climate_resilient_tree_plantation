@@ -13,6 +13,22 @@ CATEGORIES = [
     "plantation", "climate_change", "location", "general",
 ]
 
+_GREETINGS = {
+    "hi", "hi!", "hii", "hiii", "hello", "hello!", "hey", "hey!", "hiya",
+    "salam", "assalam o alaikum", "assalamualaikum", "asalam o alaikum",
+    "good morning", "good afternoon", "good evening",
+    "who are you", "what are you", "what is this", "what can you do",
+    "help", "start", "test",
+}
+
+
+def is_greeting(query: str) -> bool:
+    """Cheap, conservative check for greetings/small talk — deliberately a
+    fixed phrase list (not a length/heuristic guess) so a short real question
+    like 'soil pH?' is never misrouted away from retrieval."""
+    normalized = query.strip().lower().rstrip("!.?")
+    return normalized in _GREETINGS
+
 _KEYWORDS = {
     "tree_species": ["species", "tree", "shisham", "kikar", "sheesham", "which trees"],
     "soil": ["soil", "ph", "clay", "sand", "loam", "organic carbon"],

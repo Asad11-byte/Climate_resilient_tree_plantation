@@ -21,7 +21,7 @@ export default function Dashboard() {
             An overview of the recommendation system for Mandi Bahauddin — jump into any tool below.
           </p>
         </div>
-        <div className="rounded-lg border border-bark-500/15 bg-white/50 px-4 py-3">
+        <div className="rounded-lg border border-bark-500/15 bg-card/50 px-4 py-3">
           <HealthStrip loading={loading} error={error} data={data} />
         </div>
       </div>
@@ -31,7 +31,7 @@ export default function Dashboard() {
           <Link
             key={to}
             to={to}
-            className="rounded-lg border border-bark-500/15 bg-white/50 p-4 transition hover:border-leaf-600/40 hover:bg-white/80"
+            className="rounded-lg border border-bark-500/15 bg-card/50 p-4 transition hover:border-leaf-600/40 hover:bg-card/80"
           >
             <p className="font-[var(--font-display)] text-lg font-semibold text-soil-900">{label}</p>
             <p className="mt-1 text-sm text-bark-700">{description}</p>

@@ -25,7 +25,7 @@ class Settings(BaseSettings):
     # --- Groq (LLM generation) ---
     groq_api_key: str = Field(default="")
     groq_base_url: str = Field(default="https://api.groq.com/openai/v1")
-    groq_model: str = Field(default="llama-3.3-70b-versatile")
+    groq_model: str = Field(default="openai/gpt-oss-120b")
     groq_fast_model: str = Field(default="openai/gpt-oss-20b")
     groq_temperature: float = Field(default=0.2)
     groq_max_tokens: int = Field(default=1500)

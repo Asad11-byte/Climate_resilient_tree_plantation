@@ -23,37 +23,45 @@ export default function AIAssistant({ mapSelection, onClearMapSelection }) {
   };
 
   return (
-    <div className="flex h-[calc(100vh-160px)] flex-col">
-      <div className="mb-4">
-        <h1 className="font-[var(--font-display)] text-2xl font-semibold text-soil-900">AI Assistant</h1>
-        <p className="mt-1 text-sm text-bark-700">
-          Answers are grounded in retrieved evidence. When the evidence doesn't support a claim, that's stated
-          plainly instead of guessed at.
-        </p>
-      </div>
-
-      <div className="flex-1 space-y-4 overflow-y-auto rounded-lg border border-bark-500/15 bg-parchment-100/40 p-4">
-        {messages.length === 0 && (
-          <EmptyState
-            title="Ask your first question"
-            description="Try something like “What tree species tolerate drought in Mandi Bahauddin?”"
-          />
+    // h-full, not a guessed viewport-minus-pixels value — Layout's <main>
+    // is now the one true scroll container, so this only needs to fill
+    // whatever height main actually gives it. That's what fixes the
+    // double-scrollbar bug: previously this page's own guessed height
+    // didn't quite match main's real available height, so both this
+    // page's inner list AND the outer page could end up scrollable at
+    // once.
+    <div className="flex h-full flex-col">
+      <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col overflow-hidden">
+        {messages.length === 0 ? (
+          <div className="flex flex-1 flex-col items-center justify-center px-4 text-center">
+            <h1 className="font-[var(--font-display)] text-2xl font-semibold text-soil-900">AI Assistant</h1>
+            <p className="mt-2 max-w-md text-sm text-bark-700">
+              Answers are grounded in retrieved evidence. When the evidence doesn't support a claim, that's
+              stated plainly instead of guessed at.
+            </p>
+            <p className="mt-4 text-sm text-bark-500">
+              Try: "What tree species tolerate drought in Mandi Bahauddin?"
+            </p>
+          </div>
+        ) : (
+          <div className="flex-1 space-y-4 overflow-y-auto px-4 pb-6 pt-6 sm:px-2">
+            {messages.map((message, i) => (
+              <ChatMessage key={i} message={message} />
+            ))}
+            {loading && <ThinkingIndicator />}
+            {error && <ErrorState error={error} onRetry={retryLast} />}
+            <div ref={scrollRef} />
+          </div>
         )}
-        {messages.map((message, i) => (
-          <ChatMessage key={i} message={message} />
-        ))}
-        {loading && <ThinkingIndicator />}
-        {error && <ErrorState error={error} onRetry={retryLast} />}
-        <div ref={scrollRef} />
-      </div>
 
-      <div className="mt-4">
-        <ChatInput
-          onSend={handleSend}
-          disabled={loading}
-          locationLabel={locationLabel}
-          onClearLocation={onClearMapSelection}
-        />
+        <div className="sticky bottom-0 bg-gradient-to-t from-page from-65% to-transparent px-4 pb-4 pt-6 sm:px-2">
+          <ChatInput
+            onSend={handleSend}
+            disabled={loading}
+            locationLabel={locationLabel}
+            onClearLocation={onClearMapSelection}
+          />
+        </div>
       </div>
     </div>
   );

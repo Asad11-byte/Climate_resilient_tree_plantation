@@ -71,3 +71,90 @@ async def test_chat_includes_location_context_when_coordinates_given():
 
     assert "32.5" in llm.last_user_prompt
     assert "73.5" in llm.last_user_prompt
+
+
+@pytest.mark.asyncio
+async def test_chat_greeting_skips_retrieval_but_still_calls_llm():
+    """A greeting should never trigger retrieval (nothing to retrieve for
+    'hi') and should never get the generic no-evidence message — it should
+    reach Groq so the system prompt's greeting-handling instructions apply."""
+    store = FakeVectorStore()  # deliberately empty — retrieval would fail if called
+    llm = FakeLLMProvider(canned_text="I'm the tree plantation assistant for Mandi Bahauddin.")
+    service = ChatService(_make_retrieval_service(store), llm)
+
+    result = await service.chat("hi")
+
+    assert result.evidence_available is True
+    assert "tree plantation" in result.answer
+    assert result.sources == []
+    assert llm.last_user_prompt is not None  # Groq WAS called, unlike the no-evidence path
+
+
+@pytest.mark.asyncio
+async def test_chat_non_greeting_short_query_still_uses_retrieval():
+    """Sanity check that the greeting fast-path doesn't accidentally swallow
+    real short questions."""
+    store = FakeVectorStore()  # empty -> should raise InsufficientEvidenceError
+    llm = FakeLLMProvider()
+    service = ChatService(_make_retrieval_service(store), llm)
+
+    result = await service.chat("soil pH?")
+
+    assert result.evidence_available is False
+    assert llm.last_user_prompt is None
+
+
+@pytest.mark.asyncio
+async def test_chat_passes_real_environmental_data_into_prompt_when_available():
+    """This is the fix: when an EnvironmentDataService is wired in, the LLM
+    must see actual soil/climate values for the coordinates, not just the
+    raw lat/lon with a 'not integrated' disclaimer."""
+    from app.repositories.environmental_repository import EnvironmentalRepository
+    from app.services.environment.service import EnvironmentDataService
+    from tests.fakes import FakeSupabaseClient
+
+    store = FakeVectorStore()
+    await store.upsert(
+        [VectorRecord(id="1", vector=[1, 0, 0, 0, 0, 0, 0, 0],
+                       payload={"text": "some evidence", "document_id": "d1"})]
+    )
+    client = FakeSupabaseClient()
+    client.seed("environmental_data", [
+        {"id": "1", "latitude": 32.585, "longitude": 73.492, "soil_ph": 6.8,
+         "clay": 22.0, "data_source": "SoilGrids", "retrieved_at": "2026-01-01T00:00:00Z"},
+    ])
+    env_repo = EnvironmentalRepository(client)
+    env_service = EnvironmentDataService(env_repo, providers=[])
+
+    llm = FakeLLMProvider()
+    service = ChatService(_make_retrieval_service(store), llm, environment_service=env_service)
+
+    await service.chat("query", latitude=32.585, longitude=73.492)
+
+    assert "6.8" in llm.last_user_prompt
+    assert "SoilGrids" in llm.last_user_prompt
+
+
+@pytest.mark.asyncio
+async def test_chat_degrades_gracefully_when_environment_lookup_fails():
+    from app.core.exceptions import ProviderUnavailableError
+    from app.services.environment.base import EnvironmentDataProvider
+
+    class BrokenEnvironmentService:
+        async def get_environment(self, latitude, longitude):
+            raise ProviderUnavailableError("boom")
+
+    store = FakeVectorStore()
+    await store.upsert(
+        [VectorRecord(id="1", vector=[1, 0, 0, 0, 0, 0, 0, 0],
+                       payload={"text": "some evidence", "document_id": "d1"})]
+    )
+    llm = FakeLLMProvider()
+    service = ChatService(
+        _make_retrieval_service(store), llm, environment_service=BrokenEnvironmentService()
+    )
+
+    # Should not raise — degrades to the "unavailable" framing instead.
+    result = await service.chat("query", latitude=32.585, longitude=73.492)
+    assert result.evidence_available is True
+    assert "unavailable" in llm.last_user_prompt.lower() or "not" in llm.last_user_prompt.lower()

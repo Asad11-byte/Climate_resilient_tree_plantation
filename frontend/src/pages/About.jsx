@@ -31,7 +31,7 @@ export default function About() {
       </p>
 
       <h2 className="mt-8 font-[var(--font-display)] text-lg font-semibold text-soil-900">Architecture</h2>
-      <dl className="mt-3 divide-y divide-bark-500/10 rounded-lg border border-bark-500/15 bg-white/50">
+      <dl className="mt-3 divide-y divide-bark-500/10 rounded-lg border border-bark-500/15 bg-card/50">
         {STACK.map(([label, description]) => (
           <div key={label} className="grid grid-cols-[140px_1fr] gap-4 px-4 py-3">
             <dt className="text-sm text-bark-700">{label}</dt>

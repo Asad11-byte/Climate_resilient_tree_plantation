@@ -92,14 +92,6 @@ def get_ingestion_pipeline() -> IngestionPipeline:
 
 
 @lru_cache
-def get_chat_service() -> ChatService:
-    return ChatService(
-        retrieval_service=get_retrieval_service(),
-        llm_provider=get_llm_provider(),
-    )
-
-
-@lru_cache
 def get_soilgrids_provider() -> SoilGridsProvider:
     return SoilGridsProvider(get_settings())
 
@@ -136,4 +128,13 @@ def get_environment_service() -> EnvironmentDataService:
             get_nasa_power_provider(),
         ],
         cache_tolerance=settings.environment_cache_tolerance_degrees,
+    )
+
+
+@lru_cache
+def get_chat_service() -> ChatService:
+    return ChatService(
+        retrieval_service=get_retrieval_service(),
+        llm_provider=get_llm_provider(),
+        environment_service=get_environment_service(),
     )

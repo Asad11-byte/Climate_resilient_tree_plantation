@@ -5,7 +5,7 @@ export default function SpeciesCard({ species }) {
   return (
     <Link
       to={`/species/${species.id}`}
-      className="block rounded-lg border border-bark-500/15 bg-white/50 p-4 transition hover:border-leaf-600/40 hover:bg-white/80"
+      className="block rounded-lg border border-bark-500/15 bg-card/50 p-4 transition hover:border-leaf-600/40 hover:bg-card/80"
     >
       <p className="font-[var(--font-display)] text-lg font-semibold text-soil-900">
         {species.common_name}

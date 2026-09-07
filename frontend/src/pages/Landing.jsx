@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import logoMark from "../assets/logo-mark.png";
 
 const STEPS = [
   {
@@ -21,32 +22,47 @@ const STEPS = [
 export default function Landing() {
   return (
     <div>
-      <section className="grid grid-cols-1 items-center gap-10 py-8 lg:grid-cols-[1.1fr_0.9fr]">
-        <div>
-          <h1 className="font-[var(--font-display)] text-4xl font-semibold leading-tight text-soil-900 sm:text-5xl">
-            Know what will actually grow here.
-          </h1>
-          <p className="mt-5 max-w-lg text-lg text-bark-700">
-            A tree plantation recommendation system for Mandi Bahauddin, Punjab, grounded in soil data, climate
-            records, and species evidence — and honest when that evidence runs out.
-          </p>
-          <div className="mt-7 flex flex-wrap gap-3">
-            <Link
-              to="/assistant"
-              className="rounded-lg bg-leaf-700 px-5 py-2.5 text-sm font-medium text-parchment-50 transition hover:bg-leaf-600"
-            >
-              Ask the Assistant
-            </Link>
-            <Link
-              to="/map"
-              className="rounded-lg border border-bark-500/25 px-5 py-2.5 text-sm font-medium text-soil-900 transition hover:border-soil-800/40"
-            >
-              Explore the Map
-            </Link>
+      {/* Full-bleed brand hero — the logo on its own native dark-green
+          ground, the same treatment as the mark itself, rather than a
+          generic light card with a stock illustration. */}
+      <section className="-mx-4 rounded-none bg-brand-900 px-6 py-12 sm:-mx-6 sm:rounded-2xl sm:px-10 sm:py-16 lg:px-14">
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+          <div>
+            <h1 className="font-[var(--font-display)] text-4xl font-semibold leading-tight text-white sm:text-5xl">
+              Know what will actually grow here.
+            </h1>
+            <p className="mt-5 max-w-lg text-lg text-brand-100">
+              A tree plantation recommendation system for Mandi Bahauddin, Punjab, grounded in soil data, climate
+              records, and species evidence — and honest when that evidence runs out.
+            </p>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Link
+                to="/assistant"
+                className="rounded-lg bg-brand-400 px-5 py-2.5 text-sm font-medium text-brand-900 transition hover:bg-white"
+              >
+                Ask the Assistant
+              </Link>
+              <Link
+                to="/map"
+                className="rounded-lg border border-white/25 px-5 py-2.5 text-sm font-medium text-white transition hover:border-white/50"
+              >
+                Explore the Map
+              </Link>
+            </div>
+          </div>
+
+          <div className="flex justify-center lg:justify-end">
+            <img
+              src={logoMark}
+              alt="Tree Plantation — Mandi Bahauddin"
+              className="h-48 w-48 object-contain sm:h-64 sm:w-64"
+            />
           </div>
         </div>
+      </section>
 
-        <div className="rounded-xl border border-bark-500/15 bg-white/60 p-5">
+      <section className="py-10">
+        <div className="rounded-xl border border-bark-500/15 bg-card/60 p-5">
           <p className="text-xs font-medium text-bark-500">Example</p>
           <p className="mt-2 text-sm text-soil-900">"What tree species tolerate waterlogging near the Chenab?"</p>
           <div className="mt-3 rounded-lg border-2 border-dashed border-amber-500/50 bg-amber-500/5 px-3 py-2.5">
