@@ -1,0 +1,219 @@
+{
+  "version": "1.0",
+  "created": "2026-09",
+  "notes": "30 Q/A pairs grounded in 4 real papers about Mandi Bahauddin (agroforestry carbon, ethnomedicinal flora, native vegetation/CCA, invasive species). Questions 29-30 are deliberately unanswerable from this corpus and should return evidence_available: false — a correct 'no evidence' is a PASS for those two, not a failure.",
+  "items": [
+    {
+      "id": "q01", "category": "tree_species", "expected_evidence_available": true,
+      "query": "Which tree species had the highest carbon storage potential in the Mandi-Bahauddin agroforestry study?",
+      "expected_source_titles": ["Carbon Storage Potential of Agroforestry System near Brick Kilns"],
+      "reference_answer": "Eucalyptus camaldulensis, with the highest carbon stock recorded (3951 Mg C ha\u207b\u00b9 in Tehsil Mandi-Bahauddin).",
+      "answer_keywords": ["Eucalyptus camaldulensis"]
+    },
+    {
+      "id": "q02", "category": "tree_species", "expected_evidence_available": true,
+      "query": "What is the descending order of carbon storage potential among tree species across Mandi-Bahauddin district overall?",
+      "expected_source_titles": ["Carbon Storage Potential of Agroforestry System near Brick Kilns"],
+      "reference_answer": "Eucalyptus camaldulensis > Syzygium cumin > Popolus ciliata > Acacia nilotica > Ziziphus manritiana > Citrus sinensis > Azadirachtta Indica > Delbergia sisso > Bambusa vulgaris > Melia azadarach > Morus alba.",
+      "answer_keywords": ["Eucalyptus camaldulensis", "Syzygium cumin", "Morus alba"]
+    },
+    {
+      "id": "q03", "category": "tree_species", "expected_evidence_available": true,
+      "query": "Which tree's bark is traditionally used to treat nose bleeds in Mandi Bahauddin?",
+      "expected_source_titles": ["Ethnomedicinal Flora of District Mandi Bahaudin"],
+      "reference_answer": "Dalbergia sissoo (local name Tali/Rosewood) — bark used for nose bleed.",
+      "answer_keywords": ["Dalbergia sissoo", "nose bleed"]
+    },
+    {
+      "id": "q04", "category": "tree_species", "expected_evidence_available": true,
+      "query": "What part of Acacia nilotica is used ethnomedicinally, and for what condition?",
+      "expected_source_titles": ["Ethnomedicinal Flora of District Mandi Bahaudin"],
+      "reference_answer": "The pod, used to treat gonorrhea.",
+      "answer_keywords": ["Acacia nilotica", "pod", "gonorrhea"]
+    },
+    {
+      "id": "q05", "category": "soil", "expected_evidence_available": true,
+      "query": "What is the average soil carbon pool range measured in the Mandi-Bahauddin agroforestry study?",
+      "expected_source_titles": ["Carbon Storage Potential of Agroforestry System near Brick Kilns"],
+      "reference_answer": "Roughly 10.3\u201312.5 Mg C ha\u207b\u00b9 (tehsil averages ranged 10.3\u201315.3 Mg C ha\u207b\u00b9 depending on distance from brick kilns).",
+      "answer_keywords": ["10.3", "soil carbon"]
+    },
+    {
+      "id": "q06", "category": "soil", "expected_evidence_available": true,
+      "query": "What soil texture classification does Mandi Bahauddin district fall into, and what is its organic matter range?",
+      "expected_source_titles": ["Carbon Storage Potential of Agroforestry System near Brick Kilns"],
+      "reference_answer": "Loam to clay loam soil (USDA classification), with organic matter ranging from 0.50\u20131.01%.",
+      "answer_keywords": ["loam", "clay loam", "0.50", "1.01"]
+    },
+    {
+      "id": "q07", "category": "soil", "expected_evidence_available": true,
+      "query": "Which edaphic (soil) factors were found to have the strongest association with native plant species distribution in Mandi Baha Uddin?",
+      "expected_source_titles": ["Native Vegetation Correlation with Environmental Gradients"],
+      "reference_answer": "N, SOC, K, P, Sand, and SOM showed the dominant association; soil pH and clay were negatively associated with native species distribution.",
+      "answer_keywords": ["SOC", "SOM", "nitrogen", "pH", "clay"]
+    },
+    {
+      "id": "q08", "category": "soil", "expected_evidence_available": true,
+      "query": "According to the invasive plant study, which soil factors most influence where invasive alien species establish in Mandi Bahauddin?",
+      "expected_source_titles": ["Invasive Plants Diversity, Ecological Status"],
+      "reference_answer": "pH, moisture, soil saturation, organic matter, nitrogen (N), phosphorus (P), potassium (K), and calcium carbonate (CaCO3).",
+      "answer_keywords": ["pH", "moisture", "CaCO3", "organic matter"]
+    },
+    {
+      "id": "q09", "category": "climate", "expected_evidence_available": true,
+      "query": "What is the average annual rainfall in Mandi Bahauddin district?",
+      "expected_source_titles": ["Carbon Storage Potential of Agroforestry System near Brick Kilns", "Native Vegetation Correlation with Environmental Gradients"],
+      "reference_answer": "About 388 mm per year.",
+      "answer_keywords": ["388", "mm", "rainfall"]
+    },
+    {
+      "id": "q10", "category": "climate", "expected_evidence_available": true,
+      "query": "What is the temperature range experienced in Mandi Bahauddin district?",
+      "expected_source_titles": ["Carbon Storage Potential of Agroforestry System near Brick Kilns", "Native Vegetation Correlation with Environmental Gradients"],
+      "reference_answer": "Roughly 3\u00b0C minimum to 45\u201348\u00b0C maximum (sources differ slightly: one paper states 45\u00b0C max, another 48\u00b0C \u2014 either is a valid, correctly-cited answer).",
+      "answer_keywords": ["3", "45", "48"],
+      "notes": "Deliberately checks the system doesn't silently pick one figure and hide the source disagreement."
+    },
+    {
+      "id": "q11", "category": "water", "expected_evidence_available": true,
+      "query": "Which two major rivers border Mandi Bahauddin district?",
+      "expected_source_titles": ["Carbon Storage Potential of Agroforestry System near Brick Kilns", "Native Vegetation Correlation with Environmental Gradients"],
+      "reference_answer": "The Chenab River (south/southeast) and the Jhelum River (north).",
+      "answer_keywords": ["Chenab", "Jhelum"]
+    },
+    {
+      "id": "q12", "category": "water", "expected_evidence_available": true,
+      "query": "What are the major barrages associated with rivers in Mandi Bahauddin district?",
+      "expected_source_titles": ["Carbon Storage Potential of Agroforestry System near Brick Kilns"],
+      "reference_answer": "Rasool Barrage (on the Jhelum) and Qadirabad Barrage (on the Chenab).",
+      "answer_keywords": ["Rasool Barrage", "Qadirabad Barrage"]
+    },
+    {
+      "id": "q13", "category": "plantation", "expected_evidence_available": true,
+      "query": "How many trees per hectare were typically found in the sampled agroforestry farm plots?",
+      "expected_source_titles": ["Carbon Storage Potential of Agroforestry System near Brick Kilns"],
+      "reference_answer": "25 to 30 trees per hectare.",
+      "answer_keywords": ["25", "30", "trees/ha"]
+    },
+    {
+      "id": "q14", "category": "plantation", "expected_evidence_available": true,
+      "query": "What sampling method and plot size were used in the agroforestry carbon study?",
+      "expected_source_titles": ["Carbon Storage Potential of Agroforestry System near Brick Kilns"],
+      "reference_answer": "A lottery method of random sampling, using 75 plots of 0.405 ha (1 acre) each.",
+      "answer_keywords": ["lottery method", "0.405", "75 plots"]
+    },
+    {
+      "id": "q15", "category": "plantation", "expected_evidence_available": true,
+      "query": "Which three tehsils of Mandi Bahauddin district were sampled in the agroforestry carbon study, and how many plots in each?",
+      "expected_source_titles": ["Carbon Storage Potential of Agroforestry System near Brick Kilns"],
+      "reference_answer": "Mandi-Bahauddin tehsil (30 plots), Phalia (25 plots), and Malakwal (20 plots).",
+      "answer_keywords": ["Mandi-Bahauddin", "Phalia", "Malakwal", "30", "25", "20"]
+    },
+    {
+      "id": "q16", "category": "climate_change", "expected_evidence_available": true,
+      "query": "How does the carbon storage study suggest agroforestry can help address climate change in Pakistan?",
+      "expected_source_titles": ["Carbon Storage Potential of Agroforestry System near Brick Kilns"],
+      "reference_answer": "By sequestering carbon in trees, crops, and soil (locking up more carbon and reducing CO2 emissions), which can inform tree-planting policy and support Pakistan's commitments under the Paris Climate Accord.",
+      "answer_keywords": ["carbon sequestration", "Paris Climate Accord", "CO2"]
+    },
+    {
+      "id": "q17", "category": "climate_change", "expected_evidence_available": true,
+      "query": "What share of Pakistan's total CO2 emissions do brick kilns account for, per the agroforestry study?",
+      "expected_source_titles": ["Carbon Storage Potential of Agroforestry System near Brick Kilns"],
+      "reference_answer": "Brick kilns release over 1072 million tons of CO2 per year, about 2.7% of total emissions.",
+      "answer_keywords": ["1072 million tons", "2.7%"]
+    },
+    {
+      "id": "q18", "category": "general", "expected_evidence_available": true,
+      "query": "How many ethnomedicinal plant species were documented in the District Mandi Bahaudin survey, and how many informants were interviewed?",
+      "expected_source_titles": ["Ethnomedicinal Flora of District Mandi Bahaudin"],
+      "reference_answer": "51 plant species were documented; about 250 informants were interviewed.",
+      "answer_keywords": ["51", "250 informants"]
+    },
+    {
+      "id": "q19", "category": "general", "expected_evidence_available": true,
+      "query": "What plant is traditionally used as a toothpowder for teeth diseases in Mandi Bahauddin?",
+      "expected_source_titles": ["Ethnomedicinal Flora of District Mandi Bahaudin"],
+      "reference_answer": "Citrus limon (lemon) fruit.",
+      "answer_keywords": ["Citrus limon", "toothpowder"]
+    },
+    {
+      "id": "q20", "category": "general", "expected_evidence_available": true,
+      "query": "How many invasive alien plant species have been documented in Mandi Bahauddin district, and from how many families?",
+      "expected_source_titles": ["Invasive Plants Diversity, Ecological Status"],
+      "reference_answer": "43 invasive alien species from 37 genera and 18 families.",
+      "answer_keywords": ["43", "37 genera", "18 families"]
+    },
+    {
+      "id": "q21", "category": "general", "expected_evidence_available": true,
+      "query": "Which plant family is most represented among invasive alien species in Mandi Bahauddin?",
+      "expected_source_titles": ["Invasive Plants Diversity, Ecological Status"],
+      "reference_answer": "Poaceae, with 10 species (23.25% of all documented invasive species).",
+      "answer_keywords": ["Poaceae", "23.25%"]
+    },
+    {
+      "id": "q22", "category": "general", "expected_evidence_available": true,
+      "query": "Name three of the most common invasive plant species recorded in Mandi Bahauddin district.",
+      "expected_source_titles": ["Invasive Plants Diversity, Ecological Status"],
+      "reference_answer": "Any three of: Prosopis juliflora, Leucaena leucocephala, Xanthium strumarium, Phragmitis karka, Broussonetia papyrifera, Lantana camara, Arundo donax.",
+      "answer_keywords": ["Prosopis juliflora", "Lantana camara", "Arundo donax"]
+    },
+    {
+      "id": "q23", "category": "general", "expected_evidence_available": true,
+      "query": "Which habitat type showed the highest native plant diversity in Mandi Baha Uddin, and which showed the least?",
+      "expected_source_titles": ["Native Vegetation Correlation with Environmental Gradients"],
+      "reference_answer": "Highest: roadside, forest land, and grassland habitats. Least: barrage land and wetland habitats.",
+      "answer_keywords": ["roadside", "grassland", "barrage land", "wetland"],
+      "notes": "Distinct from the invasive-species paper, which separately found scrubland/forest habitats most vulnerable to INVASIVE species dominance \u2014 a good test that retrieval doesn't conflate the two papers' different 'diversity' findings."
+    },
+    {
+      "id": "q24", "category": "location", "expected_evidence_available": true,
+      "query": "What is the total geographic area of Mandi Bahauddin district?",
+      "expected_source_titles": ["Carbon Storage Potential of Agroforestry System near Brick Kilns"],
+      "reference_answer": "2,673 km\u00b2.",
+      "answer_keywords": ["2673", "km2"]
+    },
+    {
+      "id": "q25", "category": "location", "expected_evidence_available": true,
+      "query": "What are the approximate latitude and longitude coordinates of Mandi Bahauddin district?",
+      "expected_source_titles": ["Native Vegetation Correlation with Environmental Gradients", "Invasive Plants Diversity, Ecological Status"],
+      "reference_answer": "Approximately 32\u00b034'N latitude, 73\u00b028'E longitude.",
+      "answer_keywords": ["32", "73"]
+    },
+    {
+      "id": "q26", "category": "location", "expected_evidence_available": true,
+      "query": "What is the elevation of Mandi Bahauddin district above sea level?",
+      "expected_source_titles": ["Carbon Storage Potential of Agroforestry System near Brick Kilns"],
+      "reference_answer": "220 meters above sea level.",
+      "answer_keywords": ["220 m"]
+    },
+    {
+      "id": "q27", "category": "location", "expected_evidence_available": true,
+      "query": "Name the natural forest zones located within Mandi Bahauddin district.",
+      "expected_source_titles": ["Native Vegetation Correlation with Environmental Gradients"],
+      "reference_answer": "Bella forest, Rasul Barrage forest, Qadir Abad forest, and the Dapher rangeland forest.",
+      "answer_keywords": ["Bella forest", "Qadir Abad", "Dapher"]
+    },
+    {
+      "id": "q28", "category": "soil", "expected_evidence_available": true,
+      "query": "What is the estimated total woody vegetation carbon stock for Mandi-Bahauddin's agroforestry ecosystem, and the soil carbon stock?",
+      "expected_source_titles": ["Carbon Storage Potential of Agroforestry System near Brick Kilns"],
+      "reference_answer": "An estimated woody vegetation carbon stock of 68.5 Mg C ha\u207b\u00b9 and a soil carbon stock of 10.7 Mg C ha\u207b\u00b9.",
+      "answer_keywords": ["68.5", "10.7"]
+    },
+    {
+      "id": "q29", "category": "general", "expected_evidence_available": false,
+      "query": "What is the carbon sequestration potential of mangrove forests in Mandi Bahauddin district?",
+      "expected_source_titles": [],
+      "reference_answer": "Not answerable from this corpus \u2014 Mandi Bahauddin is an inland semi-arid subtropical district with no mangrove ecosystems; none of the ingested papers cover mangroves. The system should report no evidence rather than guessing.",
+      "answer_keywords": []
+    },
+    {
+      "id": "q30", "category": "location", "expected_evidence_available": false,
+      "query": "What is the exact current population of Mandi Bahauddin city as of 2024?",
+      "expected_source_titles": [],
+      "reference_answer": "Not answerable at that specificity \u2014 the only population figure in the corpus (198,609, from a 2017 population survey) is in the agroforestry paper, but a 2024 figure isn't present anywhere. The system should not extrapolate a current number.",
+      "answer_keywords": []
+    }
+  ]
+}

@@ -31,6 +31,7 @@ from app.services.environment.service import EnvironmentDataService
 from app.services.environment.soilgrids_provider import SoilGridsProvider
 from app.services.environment.soilgrids_gee_provider import SoilGridsGEEProvider
 from app.services.environment.sentinel_provider import SentinelProvider
+from app.services.retrieval.bm25_index import BM25Index
 from app.services.retrieval.service import RetrievalService
 from app.services.vectorstore.base import VectorStore
 from app.services.vectorstore.qdrant_store import QdrantVectorStore
@@ -71,12 +72,21 @@ def get_environmental_repository() -> EnvironmentalRepository:
 
 
 @lru_cache
+def get_bm25_index() -> BM25Index:
+    """One BM25Index per process, shared across requests — it lazily
+    builds/rebuilds itself per metadata filter (see BM25Index._ensure_built),
+    so this doesn't need its own cache-invalidation logic here."""
+    return BM25Index(get_vector_store())
+
+
+@lru_cache
 def get_retrieval_service() -> RetrievalService:
     settings: Settings = get_settings()
     return RetrievalService(
         embedding_provider=get_embedding_provider(),
         vector_store=get_vector_store(),
         reranker=get_reranker_provider(),
+        bm25_index=get_bm25_index(),
         top_k_candidates=settings.retrieval_top_k_candidates,
         top_k_final=settings.retrieval_top_k_final,
         min_relevance_score=settings.retrieval_min_relevance_score,

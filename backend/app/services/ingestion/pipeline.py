@@ -73,7 +73,7 @@ class IngestionPipeline:
     ) -> IngestResult:
         metadata = metadata or {}
         raw = load_file(path)
-        chunks = chunk_document(raw, self._chunk_size, self._chunk_overlap)
+        chunks = await chunk_document(raw, self._embeddings, self._chunk_size, self._chunk_overlap)
 
         texts = [c.text for c in chunks if c.text.strip()]
         skipped = len(chunks) - len(texts)
@@ -82,6 +82,15 @@ class IngestionPipeline:
             return IngestResult(raw.document_id, str(path), 0, skipped)
 
         await self._vector_store.ensure_collection()
+
+        # Purge this document's existing chunks before upserting the new
+        # set. Point IDs are derived from chunk_index, so if re-chunking
+        # (e.g. a chunking-strategy change, or the same file re-parsed)
+        # produces fewer chunks than last time, the old chunks at the
+        # now-unused higher indices would otherwise never be touched by
+        # upsert() and would linger in the vector store as stale duplicates
+        # — silently degrading retrieval precision/recall without erroring.
+        await self._vector_store.delete_by_metadata({"document_id": raw.document_id})
 
         records: List[VectorRecord] = []
         for batch in _batched(chunks, EMBEDDING_BATCH_SIZE):
@@ -114,9 +123,10 @@ class IngestionPipeline:
                     )
                 )
 
-        # Deterministic IDs mean upsert is naturally idempotent — re-running
-        # ingestion on the same file overwrites the same points instead of
-        # duplicating them.
+        # Deterministic IDs make the upsert itself idempotent (re-running on
+        # an unchanged file overwrites the same points rather than
+        # duplicating them); the delete_by_metadata call above is what
+        # additionally handles the chunk-count-changed case.
         await self._vector_store.upsert(records)
         logger.info("Indexed %d chunks from %s", len(records), path)
         return IngestResult(raw.document_id, str(path), len(records), skipped)

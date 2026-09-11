@@ -1,0 +1,981 @@
+Source: data\raw\agriculture-12-00295-v2.pdf
+document_id: 53b644539124bc21
+Total chunks: 89
+================================================================================
+
+--- chunk_index=0  page=1  chars=276 ---
+/gid00030/gid00035/gid00032/gid00030/gid00038/gid00001/gid00033/gid00042/gid00045/gid00001
+/gid00048/gid00043/gid00031/gid00028/gid00047/gid00032/gid00046
+Citation: Komal, N.; Zaman, Q.u.;
+Yasin, G.; Nazir, S.; Ashraf, K.; Waqas,
+M.; Ahmad, M.; Batool, A.; Talib, I.;
+Chen, Y.
+
+--- chunk_index=1  page=1  chars=474 ---
+Carbon Storage Potential of
+Agroforestry System near Brick Kilns
+in Irrigated Agro-Ecosystem. Agriculture 2022, 12, 295. https://
+doi.org/10.3390/agriculture12020295
+Academic Editor: Rosa Francaviglia
+Received: 18 January 2022
+Accepted: 16 February 2022
+Published: 18 February 2022
+Publisher’s Note:MDPI stays neutral
+with regard to jurisdictional claims in
+published maps and institutional afﬁl-
+iations. Copyright: © 2022 by the authors. Licensee MDPI, Basel, Switzerland.
+
+--- chunk_index=2  page=1  chars=755 ---
+This article is an open access article
+distributed under the terms and
+conditions of the Creative Commons
+Attribution (CC BY) license (https://
+creativecommons.org/licenses/by/
+4.0/).
+agriculture 
+Article
+Carbon Storage Potential of Agroforestry System near Brick
+Kilns in Irrigated Agro-Ecosystem
+Nayab Komal 1, Qamar uz Zaman 1, *
+ , Ghulam Yasin 2
+ , Saba Nazir 1, Kamran Ashraf 3, Muhammad Waqas 1,
+Mubeen Ahmad 1, Ammara Batool 1, Imran Talib 1 and Yinglong Chen 4,5, *
+1 Department of Environmental Sciences, The University of Lahore, Lahore 54590, Pakistan;
+nayabkomal5@gmail.com (N.K.); sabawarraich989@gmail.com (S.N.); wikash.grt@gmail.com (M.W.);
+mubeeen741@gmail.com (M.A.); ammarabatool148@gmail.com (A.B.); imran.talib@envs.uol.edu.pk (I.T.)
+
+--- chunk_index=3  page=1  chars=707 ---
+mubeeen741@gmail.com (M.A.); ammarabatool148@gmail.com (A.B.); imran.talib@envs.uol.edu.pk (I.T.)
+2 Department of Forestry, Range and Wildlife Management, Baghdad Ul Jadeed Campus,
+The Islamia University, Bahawalpur 63100, Pakistan; yasin_2486@yahoo.com
+3 Department of Food Sciences, Government College University Faisalabad Sahiwal Campus,
+Sahiwal 57000, Pakistan; kamran2417@gmail.com
+4 The UWA Institute of Agriculture, School of Agriculture and Environment, The University of Western
+Australia, Perth, WA 6009, Australia
+5 Institute of Soil and Water Conservation, Northwest A&F University, Yangling 712100, China
+* Correspondence: qamar.zaman1@envs.uol.edu.pk (Q.u.Z.); yinglong.chen@uwa.edu.au (Y.C.)
+
+--- chunk_index=4  page=1  chars=229 ---
+* Correspondence: qamar.zaman1@envs.uol.edu.pk (Q.u.Z.); yinglong.chen@uwa.edu.au (Y.C.)
+Abstract: The current study was conducted to estimate the carbon (C) storage status of agroforestry
+systems, via a non-destructive strategy.
+
+--- chunk_index=5  page=1  chars=780 ---
+A total of 75 plots (0.405 ha each) were selected by adopt-
+ing a lottery method of random sampling for C stock estimations for soil, trees and crops in the
+Mandi-Bahauddin district, Punjab, Pakistan. Results revealed that the existing number of trees in
+selected farm plots varied from 25 to 30 trees/ha. Total mean tree carbon stock ranged from 9.97
+to 133 Mg C ha−1, between 5–10 km away from the brick kilns in the study area. The decreasing
+order in terms of carbon storage potential of trees was Eucalyptus camaldulensis> Syzygium cumin>
+Popolus ciliata> Acacia nilotica> Ziziphus manritiana> Citrus sinensis> Azadirachtta Indica> Delbergia
+sisso > Bambusa vulgaris > Melia azadarach > Morus alba. Average soil carbon pools ranged from
+10.3–12.5 Mg C ha−1 in the study area.
+
+--- chunk_index=6  page=1  chars=718 ---
+Meanwhile, maximum C stock for wheat (2.08 ×106 Mg C)
+and rice (1.97 ×106 Mg C) was recorded in the cultivated area of Tehsil Mandi-Bahauddin. The entire
+ecosystem of the study area had an estimated woody vegetation carbon stock of 68.5 Mg C ha−1 and
+a soil carbon stock of 10.7 Mg C ha−1. These results highlight that climate-smart agriculture has great
+potential to lock up more carbon and help in the reduction of CO2 emissions to the atmosphere, and
+can be further used in planning policies for executing tree planting agendas on cultivated lands and
+for planning future carbon sequestration ventures in Pakistan. Keywords: agroforestry; brick kilns; carbon emissions; climate change; carbon sinks; carbon stock
+1.
+
+--- chunk_index=7  page=1  chars=674 ---
+Introduction
+Pakistan is predicted to be among the ten countries most affected by climate change,
+according to the 2019 Global Climate Risk Index [1]. Global climate change, by increasing
+the amount of greenhouse gases (GHG) in the atmosphere, is causing severe environmental
+and climatic effects. Carbon dioxide (CO 2) is one of the most commonly highlighted
+greenhouse gasses. Global climate change and the increase in the trend of CO2 emissions
+are a growing concern today [2]. Pakistan is confronting this powerful danger to social,
+environmental, and economic development [ 3]. The impacts of climate change can be
+categorized into extreme and non-extreme types [ 4,5].
+
+--- chunk_index=8  page=1  chars=420 ---
+The World Bank [ 6] recognizes
+ﬁve foremost factors through which climate change will affect agricultural production:
+change in precipitation pattern and temperature, climatic variability, CO2 fertilization and
+surface water runoff. Reilly et al. [7] found that higher rainfall results in reduction of yield. Agriculture 2022, 12, 295. https://doi.org/10.3390/agriculture12020295 https://www.mdpi.com/journal/agriculture
+
+--- chunk_index=9  page=2  chars=782 ---
+Agriculture 2022, 12, 295 2 of 13
+Variations in climate cause many people to move into poverty and food insecurity [8]. In
+Pakistan, the general origin of air pollution is customarily untidy industrial buildings of
+brick formation, present in the peri-metropolitan and rural regions [9]. Inferior quality fuels,
+including corncobs, rubber tires, rice straw, bagasse, rice husk, coal, oil and wood, used
+in these brick kilns produce ﬂy ash particles that deposit on nearby plants affecting their
+photosynthetic potential [6]. Brick kilns release over 1072 million tons of CO2 emissions into
+the atmosphere per year, making 2.7% of total emissions. Most of the brick kilns in the rural
+areas in Pakistan use conventional technology that is very dangerous from an environmental
+aspect.
+
+--- chunk_index=10  page=2  chars=794 ---
+According to the Punjab Disaster Management Authority (PDMA), 37.4% of brick
+kilns have moved to zig-zag technology in Punjab alone [1]. All the types of fuel utilized in
+this type of kiln cause a high concentration of pollutants in gaseous form in the air, with
+destructive effects on the atmosphere, plants and people [10,11]. Islam et al. [12] estimated
+that the soil close to the brick kiln was reduced in quantity when compared with the same
+soil further from brick kiln, showing a variation in agricultural production. The mean
+values of total nitrogen, available phosphorus and sulfur were signiﬁcantly less in the soil
+samples close to the brick kiln (0.05%, 12.4, and 8.36 ppm, respectively) than those in the
+soil further from the brick kiln (0.06%, 24.6, and 11.7 ppm, respectively).
+
+--- chunk_index=11  page=2  chars=800 ---
+Agriculture is a key economic sector that contributes 21% to the gross domestic product
+(GDP), employs 45% of the total workforce and contributes about 60% to exports [ 13]. Changing climatic variables, particularly temperature and rainfall, will introduce several
+challenges to agriculture in the future. Changes in the frequency and intensity of droughts,
+ﬂooding, and storm damage are anticipated [13]. Agroforestry could provide adaptation
+to this climate change [14] by protecting crops from temperature elevation. On the other
+hand, this causes a decrease in soil evaporation, wind seeds, and transpiration of crops. The carbon (C) sequestration above ground could easily be increased by planting trees and
+this also increases carbon in the soil on the land where crops are cultivated [ 15,16].
+
+--- chunk_index=12  page=2  chars=679 ---
+The
+general sequestration of carbon due to such actions has been assumed to be 9, 21, 50, and
+63 Mg C ha−1 in temperate, sub-humid, semiarid, and humid regions, respectively [ 17]. The planting of trees together with crops has many advantages, involving higher soil
+richness, limitation of soil erosion, lower water logging, decreased fermentation and
+eutrophication of streams and rivers, enhancement of local biodiversity, and reduction of
+pressure on common forests for fuel [18–20]. At a global scale, unproductive croplands of
+about 630 million ha could be used for agroforestry as part of an ecological engineering
+tool to potentially sequester 586,000 Mg C year−1 by 2040.
+
+--- chunk_index=13  page=2  chars=754 ---
+Moreover, in present national
+and global monitoring protocols for carbon, there is a need to include agroforestry in C
+stocks to estimate the share of this abandoned pool in a precise way. Agroforestry systems
+are considered as a carbon sink to sequester CO2, so there is a need to evaluate the carbon
+sequestration potential of agroforestry systems in order to decrease emissions near brick
+kilns on irrigated land. The main objectives of the current investigation were (1) to assess
+and quantify the potential of agroforestry systems in C stock at various distances from
+brick kilns in an irrigated agro-ecosystem, (2) to discover differences between agroforestry
+systems and the carbon capturing capacity of crops, trees and soil organic carbon (SOC).
+
+--- chunk_index=14  page=2  chars=865 ---
+2. Materials and Methods
+2.1. Study Locations and Sampling Methodology
+The present study was conducted in the Mandi-Bahauddin district, central Punjab,
+Pakistan (Figure 1). According to the population survey in 2017, Mandi-Bahauddin is the
+41st city by population. This city is located between the river Chenab (39 km in south) and
+the river Jhelum (12 km in north). It lies between 30◦8′to 32◦40′north latitude, and 73◦36′
+to 73◦37′east longitude. It has a total area of 2673 km2. Major rivers are River Jhelum, with
+Rasool Barrage & Chenab and the Qadirabad Barrage. According to the Pakistan Bureau
+of Statistics (2019), the total population of Mandi-Bahuddin is 198,609 with a population
+density of 30 km2. The annual change in population is 1.68%. The elevation of this district
+is 220 m above the sea level. The weather conditions experience a maximum average
+
+--- chunk_index=15  page=3  chars=781 ---
+Agriculture 2022, 12, 295 3 of 13
+temperature of 45 ◦C and minimum average temperature of 3 ◦C, with average rainfall of
+388 mm and wind direction mostly from north to east (Pakistan meteorological department,
+PMD). According to the US Department of Agriculture classiﬁcation system, the soil type
+of the study area falls in the category of loam to clay loam soil with organic matter ranging
+from 0.50–1.01%. Most farmers in these areas use conventional practices (chemical fertilizer)
+for crop production instead of using organic methods for crop production to improve soil
+health. According to the agricultural department, the main crops in study area are wheat,
+rice and sugarcane and the total cultivated area is 214,348.83 ha. Maize and pulses are also
+grown in smaller areas.
+
+--- chunk_index=16  page=3  chars=289 ---
+Agriculture 2022, 11, x FOR PEER REVIEW 3 of 14 
+ 
+ 
+Rasool Barrage & Chenab and the Qadirabad Barrage. According to the Pakistan Bureau 
+of Statistics (2019), the total population of Mandi-Bahuddin is 198,609 with a population 
+density of 30 km2. The annual change in population is 1.68%.
+
+--- chunk_index=17  page=3  chars=301 ---
+The elevation of this district 
+is 220 m above the sea level. The weather conditions experience a maximum average tem-
+perature of 45 ° C and minimum average temperature of 3 °C, with average rainfall of 388 
+mm and wind direction mostly from north to east  (Pakistan meteorological department, 
+PMD).
+
+--- chunk_index=18  page=3  chars=687 ---
+According to the US Department of Agriculture classification system, the soil type 
+of the study area falls in the category of loam to clay loam soil with organic matter ranging 
+from 0.50–1.01%. Most farmers in these areas use conventional practices (chemical ferti-
+lizer) for crop production instead of using organ ic methods for crop production to im-
+prove soil health. According to the agricultural department, the main crops in study area 
+are wheat, rice and sugarcane  and the total cultivated area is 214,348.83 ha. Maize and 
+pulses are also grown in smaller areas. Figure 1. Map of the study area and sampling points. Figure 1. Map of the study area and sampling points. 2.2.
+
+--- chunk_index=19  page=3  chars=411 ---
+Above and Below Ground Trees’ Biomass Carbon Estimation
+Field visits were carried out from November 2020 to May 2021 at regular intervals
+for the collection of data in 3 selected Tehsils, i.e., Mandi-Bahauddin, Phalia, Malakwal. A
+total of 75 quadrate plots of 0.405 ha = 1 acre each with agroforestry practices were selected
+and a tree inventory such as diameter at breast height in cm (DBH) and height (m) was
+
+--- chunk_index=20  page=4  chars=64 ---
+Agriculture 2022, 12, 295 4 of 13
+taken for each plot (Table 1).
+
+--- chunk_index=21  page=4  chars=680 ---
+By adopting a lottery method of random sampling, the sample
+collection sites were selected on the basis of brick kiln location at 0, 5 and 10 km distance. Mean values of tree height and diameter at breast height of potential tree species at various
+distances from the brick kilns are depicted in Table 2. Table 1. Number of plots measured from selected Tehsils in Mandi-Bahauddin sampling. District Tehsil No. of Measured Plots (0.405 ha)
+Mandi-Bahauddin
+Mandi-Bahauddin 30
+Phalia 25
+Malakwal 20
+Table 2. Diameter at Breast Height (DBH) and Height of Potential Tree Species at Various Distance
+from Brick Kilns in the Agroforestry System of Mandi-Bahauddin district (Mean Values).
+
+--- chunk_index=22  page=4  chars=786 ---
+Tehsils Potential Tress Species Near Brick Kilns 5 km from Brick Kilns 10 km from Brick Kilns
+Height (m) DBH (cm) Height (m) DBH (cm) Height (m) DBH (cm)
+Mandi-Bahauddin
+A. nilotica 8.8 6.5 7.7 8.3 10.3 8.6
+A. indica 7.7 6.5 7.8 9.6 9.1 8.6
+M. azadarach 8.2 6.5 7.9 9.0 9.5 8.5
+C. sinensis 6.8 6.4 7.8 8.6 8.2 8.6
+D. sisso 7.3 6.6 7.8 8.7 8.7 8.8
+E. camaldulensis 6.6 6.6 8.1 8.4 8.0 8.8
+P . ciliata 7.5 6.7 7.8 8.3 8.9 8.8
+S. cumin 7.8 6.6 7.9 9.0 9.1 8.7
+Z. manritiana 8.2 6.5 7.9 9.2 9.1 8.9
+M. alba 7.8 6.5 7.8 9.4 9.2 8.7
+B. vulgaris 8.5 6.6 7.6 9.2 9.9 8.9
+Phalia
+A. nilotica 7.9 6.3 7.7 7.4 6.7 5.8
+A. indica 8.1 6.4 7.5 3.0 7.6 5.2
+M. azadarach 8.5 6.5 7.7 8.6 6.4 6.3
+C. sinensis 8.3 6.3 7.6 8.3 7.3 6.5
+D. sisso 8.1 6.4 7.7 3.2 7.6 6.4
+E. camaldulensis 7.3 6.4 7.6 3.3 8.3 6.5
+
+--- chunk_index=23  page=4  chars=733 ---
+M. azadarach 8.5 6.5 7.7 8.6 6.4 6.3
+C. sinensis 8.3 6.3 7.6 8.3 7.3 6.5
+D. sisso 8.1 6.4 7.7 3.2 7.6 6.4
+E. camaldulensis 7.3 6.4 7.6 3.3 8.3 6.5
+P . ciliata 6.3 6.4 7.7 3.1 7.0 6.6
+S. cumin 8.0 6.4 7.6 8.7 8.1 6.6
+Z. manritiana 8.4 6.4 7.4 8.1 8.0 6.5
+M. alba 8.0 6.4 7.6 8.3 8.0 6.4
+B. vulgaris 8.2 6.4 7.2 8.1 8.6 6.3
+Malakwal
+A. nilotica 10.9 6.0 7.3 3.2 11.1 5.7
+A. indica 10.2 5.3 7.3 3.5 7.3 3.2
+M. azadarach 10.5 5.3 6.6 10.6 7.0 3.2
+C. sinensis 3.5 5.3 7.3 11.3 8.8 6.7
+D. sisso 3.7 6.0 7.4 11.4 8.3 3.3
+E. camaldulensis 3.1 6.1 7.2 11.5 8.5 7.3
+P . ciliata 3.3 6.1 7.2 3.6 7.3 3.3
+S. cumin 3.5 6.0 7.3 3.6 7.0 3.2
+Z. manritiana 3.7 5.3 6.7 11.8 7.1 3.3
+M. alba 3.8 6.0 5.3 11.3 6.8 3.2
+B. vulgaris 3.4 6.1 5.4 10.6 6.6 8.1
+
+--- chunk_index=24  page=4  chars=620 ---
+S. cumin 3.5 6.0 7.3 3.6 7.0 3.2
+Z. manritiana 3.7 5.3 6.7 11.8 7.1 3.3
+M. alba 3.8 6.0 5.3 11.3 6.8 3.2
+B. vulgaris 3.4 6.1 5.4 10.6 6.6 8.1
+Acacia nilotica[Fabaceae], Delbergia sisso[Fabaceae], Melia azedarach[Meliaceae], Citrus
+reticulate [Rutaceae], Popolus ciliate[Salicaceae], Eucalyptus camaldulensis[Myrtaceae], Melia
+azedarach [Meliaceae], Populus deltoides[Salicaceae], Syzygium cumini[Myrtaceae], Ziziphus
+mauritiana [Rhamnaceae], Azadirachtta indica[Meliaceae], Morus alba[Moraceae] and Bam-
+busa vulgaris[Poaceae] were the most commonly planted tree species in and along the farm
+ﬁelds in all three tehsils.
+
+--- chunk_index=25  page=5  chars=776 ---
+Agriculture 2022, 12, 295 5 of 13
+2.3. Total Carbon Stock Estimate
+Allometric equations from the literature were used for the estimation of tree biomass
+and where appropriate corrected for log bias (Table 3). In case of non-availability of allometric
+equations, 26% of the above ground biomass was assumed as below groundbiomass [21–23]. Next, biomass of individual trees was scaled to biomass/plot, biomass/hectare, and carbon
+stock/hectare. Contents of carbon were measured from biomass by presumption that the
+dry mass contains 48.1% of carbon [21,24]. The total tehsil tree carbon was estimated by
+multiplying carbon amount per hectare from sampled plots by the total area of the tehsil. Table 3. Allometric equations for the calculation of above and below ground biomass.
+
+--- chunk_index=26  page=5  chars=1167 ---
+Species Component Allometeric Equations Source R2 MSE
+A. nilotica AGB
+BGB
+LogY = −1.0646 + 0.9098 ×logD2H
+LogY = −1.3952 + 0.8253 ×logD2H
+[25]
+[25]
+0.96
+0.92
+-
+-
+A. indica AGB
+BGB
+LnY = −3.1114 + 0.9719 ×ln D2H
+BGB = AGB ×0.26
+[26]
+[27]
+0.97
+-
+0.116
+-
+E. camaldulensis AGB
+BGB
+LnY = −2.2660 + 2.4663 ×ln D2H
+BGB = AGB ×0.26
+[28]
+[27]
+0.99
+-
+-
+-
+M. azedarach AGB
+BGB
+Y = 42.321 + 9.52 ×10−5 ×D2H
+BGB = AGB ×0.26
+[29]
+[27]
+0.74
+-
+-
+-
+M. alba AGB
+BGB
+LnY = −3.1114 + 0.9719 ×ln D2H
+BGB = AGB ×0.26
+[26]
+[27]
+0.97
+-
+0.116
+-
+P . deltoides AGB
+BGB
+Y = 173.144 ×[1 + (2.956 −B ×0.120 ×DBH)]−1
+Y = 69.105 ×[1 + (3.273 −0.077 ×DBH)]−1
+[30]
+[30]
+0.99
+0.98
+-
+-
+S. cumini AGB
+BGB
+LogY = −1.2066 + 0.9872 ×logD2H
+BGB = AGB ×0.26
+[31]
+[27]
+0.97
+-
+-
+-
+Z. mauritiana AGB
+BGB
+LnY = −3.1114 + 0.9719 ×ln D2H
+BGB = AGB ×0.26
+[26]
+[27]
+0.97
+-
+0.116
+-
+D. sissoo
+Bole
+Branch
+Twig
+Leaf
+Tree age < 4
+Y = −0.367 + 1.3457 ×DBH
+Y = −1.4581 + 0.7708 ×DBH
+Y = −0.2932 + 0.1461 ×DBH
+Y = −0.4501 + 0.283 ×DBH
+[32]
+-
+-
+-
+0.97
+0.94
+0.94
+0.94
+-
+-
+-
+-
+AGB = aboveground biomass; B = belowground biomass; D = tree diameter at 1.3 m (cm); H = total tree height
+(m), BA = individual tree basal area (cm2).
+
+--- chunk_index=27  page=5  chars=770 ---
+2.4. Soil Sampling Collection
+From 0, 5 and 10 km away from the brick kilns, soil was sampled in a random subset
+of plots to represent the major tree and crop combinations. Soil samples ( n = 420) were
+collected at a depth of 0–30 cm near the base of a randomly selected tree, from the four
+cardinal directions. Samples were stored in polythene bags and analyzed at the Soil and
+Water Testing Laboratory for Research, Bahawalpur. A 100 cm3 stainless-steel cylinder was
+used to measure soil bulk density. After being air-dried and passed through a 2 mm sieve,
+organic carbon was measured using the Walkley–Black method [33]. To calculate the soil
+carbon per hectare, the values of bulk density, soil depth, and percentage of organic carbon
+were then multiplied [34]. 2.5.
+
+--- chunk_index=28  page=5  chars=457 ---
+Crop Carbon Stock Determination
+Wheat and rice plants were manually harvested to the required depth, sun dried and
+then weighed with a spring balance to measure above and below ground biomass per
+plot, converted into Mg ha−1. From each plot at different locations, a different number of
+tillers of wheat and rice crops were selected randomly from an area of 1 m2. Above ground
+and below ground C stock in wheat and rice samples was determined by multiplying
+
+--- chunk_index=29  page=6  chars=609 ---
+Agriculture 2022, 12, 295 6 of 13
+the respective above ground and below ground biomass with carbon conversion factor of
+0.45, as explained by Prommer et al. [35]. Next, biomass of individual crop was scaled to
+biomass/hectare, carbon stock/hectare, and ﬁnally on a tehsil basis. 2.6. Data Analysis
+Collected data was analyzed using “Statistix 8.1” and “Statistix 10” statistical packages. Data regarding analytical analysis of AGB, BGB and SOC were analyzed using descriptive
+statistics. Graphical work was performed using Microsoft Ofﬁce software (Version, 2016;
+Microsoft Corporation, Albuquerque, NM, USA).
+
+--- chunk_index=30  page=6  chars=780 ---
+3. Results
+3.1. Tree Abundance and Distribution
+Variations in trees’ abundance and distribution were observed in the Mandi-Bahauddin
+district. All the tehsils showed variations in trees’ abundance; the maximum percentage
+of trees species was shown in Mandi-Bahauddin (48%), followed by Malakwal (34%)
+and Phalia (18%) (Figure 2A). All the values regarding the tree’s distribution in Mandi-
+Bahauddin varied based on brick kiln distance. Mandi-Bahauddin showed variations in
+tree distribution, with maximum percentage (15%) noticed for E. camaldulensis(15%) and
+V . nilotica(15%) followed by C. sinensis(14%), M. azadarach(14%), D. sisso(12%) and P . ciliate
+(10%), while the lowest tree distribution was recorded in S. cumin(3%), Z. manritiana(3%)
+and B. vulgaris(2%) (Figure 2B).
+
+--- chunk_index=31  page=6  chars=698 ---
+Phalia showed variations in tree distribution, the maximum
+percentage of tree species being E. camaldulensis(19%) and V . nilotica(17%) followed by
+C. sinensis(14%), M. azadarach(12%), D. sisso(10%) and P . ciliate(10%), while the lowest tree
+distribution was noticed in A. indica(6%), S. cumin(2%), Z. manritiana(2%) and B. vulgaris
+(2%) (Figure 2C). Malakwal showed variations in tree distribution, the maximum percent-
+age of trees being V . nilotica(15%) and E. camaldulensis(14%), followed by C. sinensis(13%),
+M. azadarach(13%), D. sisso(10%) and P . ciliate(10%), while the lowest tree distribution was
+found in A. indica(6%), S. cumin(5%), Z. manritiana(3%) and B. vulgaris(3%) (Figure 2D).
+
+--- chunk_index=32  page=6  chars=701 ---
+3.2. Carbon Stock of Trees
+The above ground and below ground carbon stock and total carbon stock potential
+of trees in Mandi-Bahauddin district were different, which describes the variations in
+carbon stock capacity of potential species of all three tehsils of the district (Table 4). Max-
+imum C stock was recorded in E. camaldulensis(3951 Mg C ha−1), followed by S. cumin
+(282 Mg C ha−1), P . ciliate(75.9 t/ha), and minimum C stock was observed in C. sinensis
+(17.3 Mg C ha−1) in Mandi-Bahauddin. In Phalia, maximum C stock was shown in A. nilot-
+ica (18.5 Mg C ha−1), followed by S. cumin(16.8 Mg C ha−1) and B. vulgaris (2.5 Mg C ha−1)
+and minimum C stock was observed in M. alba(0.02 Mg C ha−1).
+
+--- chunk_index=33  page=6  chars=723 ---
+Maximum C stock was
+shown in P . ciliata(44.5 Mg C ha−1), followed by A. nilotica(21.2 Mg C ha−1), E. camaldulen-
+sis (20.9 Mg C ha−1), and minimum C stock was observed in M. azadarach(0.05 Mg C ha−1)
+in Malakwal. Maximum C stock was shown in the trees of Mandi-Bahauddin followed by
+Malakwal, and minimum C stock was shown in Phalia. The descending order in terms of
+carbon sequestration potential of trees in Mandi-Bahauddin was S. cumin> E. camaldulensis
+> P . ciliate> B. vulgaris> A. nilotica> Z. manritiana> M. azadarach> A. Indica> D. sisso>
+M. alba> C. sinensis. The descending order in terms of carbon sequestration potential of
+trees in Tehsil Phalia was E. camaldulensis> A. nilotica> D. sisso> Z. manritiana> A.
+
+--- chunk_index=34  page=6  chars=310 ---
+Indica
+> P . ciliate> S. cumin> M. alba> M. azadarach> C. sinensis> B. vulgaris. The decreasing
+order in terms of carbon stock potential of trees in Malakwal was E. camaldulensis> P . ciliate
+> C. sinensis> A. nilotica> Z. manritiana> A. Indica> S. cumin> B. vulgaris> D. sisso>
+M. alba> M. azedarach(Table 4).
+
+--- chunk_index=35  page=7  chars=626 ---
+Agriculture 2022, 12, 295 7 of 13
+Agriculture 2022, 11, x FOR PEER REVIEW 7 of 14 
+ 
+ 
+ 
+Figure 2. Tree species abundance in Mandi-Bahauddin district (A) and tree species distribution ex-
+pressed as a percentage of total basal area for agroforestry plots in tehsils Mandi -Bahauddin (B), 
+Phalia (C) and Malakwal (D) in Punjab, Pakistan. 3.2. Carbon Stock of Trees 
+The above ground and below ground carbon stock and total carbon stock potential 
+of trees in Mandi-Bahauddin district were different, which describes the variations in car-
+bon stock capacity of potential species of all three tehsils of the district (Table 4).
+
+--- chunk_index=36  page=7  chars=767 ---
+Maxi-
+mum C stock was recorded in E. camaldulensis (3951 Mg C ha−1), followed by S. cumin (282 
+Mg C ha −1), P. ciliate (75.9 t/ha), and minimum C stock was observed in C. sinensis (17.3 
+Mg C ha −1) in Mandi -Bahauddin. In Phalia , maximum C stock was show n in A. nilotica 
+(18.5 Mg C ha−1), followed by S. cumin (16.8 Mg C ha−1) and B. vulgaris (2.5 Mg C ha−1) and 
+minimum C stock was observed in M. alba (0.02 Mg C ha−1). Maximum C stock was shown 
+in P. ciliata (44.5 Mg C ha−1), followed by A. nilotica (21.2 Mg C ha−1), E. camaldulensis (20.9 
+Mg C ha−1), and minimum C stock was observed in M. azadarach (0.05 Mg C ha−1) in Mala-
+kwal. Maximum C stock was shown in the trees of Mandi-Bahauddin followed by Mala-
+kwal, and minimum C stock was shown in Phalia.
+
+--- chunk_index=37  page=7  chars=652 ---
+The descending order in terms of car-
+bon sequestration potential of trees in Mandi-Bahauddin was S. cumin > E. camaldulensis > 
+P. ciliate > B. vulgaris > A. nilotica > Z. manritiana > M. azadarach  > A. Indica > D. sisso > M. 
+alba > C. sinensis. The descending order in terms of carbon sequestration potential of trees 
+in Tehsil Phalia was E. camaldulensis > A. nilotica > D. sisso  > Z. manritiana> A. Indica  > P. 
+ciliate> S. cumin > M. alba > M. azadarach > C. sinensis > B. vulgaris. The decreasing order in 
+terms of carbon stock potential of trees in Malakwal was E. camaldulensis >  P. ciliate> C. 
+sinensis > A. nilotica> Z. manritiana> A.
+
+--- chunk_index=38  page=7  chars=476 ---
+Indica  > S. cumin > B. vulgaris > D. sisso > M. alba > 
+M. azedarach (Table 4). Figure 2. Tree species abundance in Mandi-Bahauddin district ( A) and tree species distribution
+expressed as a percentage of total basal area for agroforestry plots in tehsils Mandi-Bahauddin (B),
+Phalia (C) and Malakwal (D) in Punjab, Pakistan. Table 4. Summary of above ground carbon, below ground carbon and total carbon (Mg C ha−1) of
+selected species at various points from the brick kilns.
+
+--- chunk_index=39  page=7  chars=750 ---
+Tehsil Mandi-Bahauddin Phalia Malakwal
+Potential Tress
+Species AGC BGC Total
+Carbon AGC BGC Total
+Carbon AGC BGC Total
+Carbon
+A. nilotica 24.8 6.60 31.1 14.4 4.07 18.5 9.70 4.20 21.2
+A. indica 15.0 3.90 18.9 1.30 0.60 1.29 0.06 0.02 0.12
+M. azadarach 18.9 4.90 23.8 0.06 0.02 0.06 0.06 0.02 0.05
+C. sinensis 13.7 3.60 17.3 0.06 0.03 0.12 0.60 0.20 0.80
+D. sisso 14.9 3.90 18.9 13.3 3.50 16.8 0.07 0.03 0.09
+E. camaldulensis 3135 815 3951 0.08 0.02 0.04 36.6 12.1 20.9
+P . ciliata 52.0 23.6 75.9 0.20 0.09 0.40 102 60.7 44.5
+S. cumin 136 35.0 282 0.50 0.13 0.98 11.5 4.40 1.20
+Z. manritiana 18.0 4.70 37.8 7.10 1.65 0.13 34.0 29.8 18.7
+M. alba 16.0 2.00 18.7 0.03 0.007 0.02 0.07 0.03 0.09
+B. vulgaris 32.0 8.00 67.6 0.24 0.08 2.52 1.04 0.50 0.20
+3.3.
+
+--- chunk_index=40  page=7  chars=426 ---
+Total Tree Carbon Stock in Mandi-Bahauddin District
+All the values regarding total tree carbon stock were different at various distances from
+the brick kilns in an agroforestry system in various tehsils of Mandi-Bahauddin district
+(Table 5). Maximum tree carbon stock (133 Mg C ha−1) was noticed in Mandi-Bahauddin
+followed by Malakwal (62.6 Mg C ha −1), while the minimum was recorded in Phalia
+(9.97 Mg C ha−1) in (Table 5).
+
+--- chunk_index=41  page=8  chars=552 ---
+Agriculture 2022, 12, 295 8 of 13
+Table 5. Total Tree Carbon stock. Tehsil Total Trees C Stock (Mg C ha −1)
+Mandi-Bahauddin 133
+Phalia 9.97
+Malakwal 62.6
+Mean data from 3 locations of brick kilns. 3.4. Total Soil Organic Carbon Stock
+Notable variations were observed for soil organic carbon at various distances from
+the brick kilns in the agroforestry system of various tehsils in Mandi-Bahauddin district
+(Table 6). Maximum total organic carbon of soil was noticed in Malakwal 10 km away
+from the brick kilns compared with control (near brick kilns).
+
+--- chunk_index=42  page=8  chars=702 ---
+The highest stock of C in
+soil (15.30 Mg C ha−1) in Mandi-Bahauddin was noticed near the brick kiln, and minimum
+stock of soil C (9.06 Mg C ha −1) was measured 5 km away from the brick kiln, and an
+average organic C stock of (11.6 Mg C ha−1) was noticed. In Phalia maximum measured
+soil C stock (13.58 Mg C ha−1) was shown near the brick kiln and minimum soil C stock
+(11.6 Mg C ha−1) was shown 5 km away from the brick kiln, and average organic carbon
+of (12.5 Mg C ha−1) was noticed. In Malakwal, maximum soil C stock (15.3 Mg C ha −1)
+was measured 10 km from the brick kiln and minimum soil C stock (3.12 Mg C ha−1) was
+shown 5 km away, with an average organic C stock of (10.3 Mg C ha−1) (Table 6).
+
+--- chunk_index=43  page=8  chars=703 ---
+Table 6. Average Soil Organic Carbon Stock. Tehsils
+Soil C Stock (Mg C ha−1) Average Soil C Stock
+(Mg C ha−1)0 km 5 km 10 km
+Mandi-Bahauddin 15.3 9.06 10.3 11.6
+Phalia 13.6 11.6 12.4 12.5
+Malakwal 12.5 3.12 15.3 10.3
+3.5. Total Organic Carbon Stock in Potential Crops
+All the values regarding the carbon stock in Triticum aestivum and Oryza sativa at
+various distances were different in the agroforestry system of cultivated area for various
+tehsils of Mandi-Bahauddin district (Table 7). Maximum carbon stock was recorded in
+Triticum aestivum in Tehsil Mandi-Bahauddin (2.08 ×106 Mg C) followed by Malak-
+wal ( 1.85 ×106 Mg C). Minimum carbon stock was noticed in wheat crop in Phalia
+(1.83 ×106 Mg C).
+
+--- chunk_index=44  page=8  chars=216 ---
+For rice crop, maximum carbon stock was noticed in Mandi-Bahauddin
+(1.97 ×106 Mg C), followed by Phalia (1.83 ×106 Mg C), while minimum carbon stock in
+rice was recorded in Tehsil Malakwal (1.48 ×106 Mg C) (Table 8).
+
+--- chunk_index=45  page=8  chars=391 ---
+Table 7. Measured Carbon stock in Triticum aestivum. Tehsil AGB
+(Mg C ha−1)
+BGB
+(Mg C ha−1)
+Total Biomass
+(Mg C ha−1)
+Total Cultivated
+Area (ha)
+Crop C Stock
+(Mg C)
+Mandi-Bahauddin 50.6 5.60 56.2 82,340 2.08 ×106
+Phalia 52.1 5.20 57.3 71,246 1.83 ×106
+Malakwal 60.8 7.10 67.8 60,754 1.85 ×106
+ABG = Above ground biomass; BGB = Below ground biomass; Mean data from 3 locations of brick kilns.
+
+--- chunk_index=46  page=9  chars=423 ---
+Agriculture 2022, 12, 295 9 of 13
+Table 8. Measured Carbon stock in Oryza sativa. Tehsil AGB
+(Mg C ha−1)
+BGB
+(Mg C ha−1)
+Total Biomass
+(Mg C ha−1)
+Total Cultivated
+Area (ha)
+Crop C Stock
+(Mg C)
+Mandi-Bahauddin 49.4 3.90 53.3 82,340 1.97 ×106
+Phalia 50.1 4.10 57.2 71,246 1.83 ×106
+Malakwal 52.3 4.90 54.2 60,754 1.48 ×106
+ABG = Above ground biomass; BGB = Below ground biomass; Mean data from 3 locations of brick kilns. 4.
+
+--- chunk_index=47  page=9  chars=517 ---
+Discussion
+This study provides the estimation of potential C pools for agroforestry systems in
+relation to brick kilns in Mandi-Bahauddin district, Pakistan. The agroforestry systems
+observed in the research site are crucial for the livelihoods of local farmers, as they have
+both commercial and subsistence production values [36,37]. In addition to timber from tree
+species, ﬁeld crops such as wheat also have good market prospects at local and international
+level, as these are widely used for consumption [ 38,39].
+
+--- chunk_index=48  page=9  chars=682 ---
+Although not intrinsically C
+dense compared to systems such as forests or intensively managed agroforestry systems
+and pastures, C storage in agricultural farms can be increased by 20.4 to 21.4 t C ha −1
+globally [40,41] through the incorporation of long-living, deep-rooted trees [42,43]. While
+climatic attributes are consistent across the district where sampling was performed, the
+amount of C sequestered varied, largely depending on the tree species’ distribution, density
+of tree species, basal area of tree, age of tree, area under crops and distance of agroforestry
+system from the brick kiln, emphasizing the importance of management decisions in
+determining carbon stocks.
+
+--- chunk_index=49  page=9  chars=476 ---
+For example, district total mean tree carbon stock was the lowest
+(9.97 Mg ha−1) in Phalia, 5 km away from the brick kiln and the highest ( 133 Mg ha−1)
+in Mandi-Bahauddin, 10 km away from the brick kiln, among all tehsils in the study
+area. This appears to be related primarily to the level of tree stocking in the district, with
+Mandi-Bahauddin having the highest average basal area of all tehsils (8.9 m2 ha−1), and
+Malakwal having the lowest tree basal area (3.2 m2 ha−1).
+
+--- chunk_index=50  page=9  chars=781 ---
+The current study revealed that
+maximum carbon sequestration was noticed in E. camaldulensiswhile the minimum was
+observed in M. alba.Among various tree species, the difference in biomass might be due to
+numerous aspects, i.e., number of trees/ha, tree age, quality and location of site, cultural
+practices, techniques and system of planting and ecological conditions in that area [21–24]. The average stored C stock of agroforestry systems in our study area was 11.46 Mg C ha−1
+in soil, 68.5 Mg C ha −1 in trees, 60.4 Mg C ha −1 in wheat and 54.2 Mg C ha −1 in rice. The carbon stocks of simple systems (i.e., combination of single trees with cash crop or
+grass) and mixed-tree systems are similar to C stock on agroforestry systems reported by
+other studies in Indonesia [44,45].
+
+--- chunk_index=51  page=9  chars=529 ---
+Tree biomass accumulation representing the value of
+tree basal area has a correlation with C stock value [46]. The tree species having a higher
+basal area have the capacity for higher biomass accumulation which results in higher C
+stocks [47]. Our ﬁndings reﬂect that the plots near the brick kilns showed more growth of
+trees and potential crops (wheat and rice) in the study area, due to shifting of brick kilns to
+zig-zag technology that reduced dust emission. Similar patterns were reported in other
+studies [21,36,37,48,49].
+
+--- chunk_index=52  page=9  chars=900 ---
+In a terrestrial ecosystem, soil is a very notable system for CO 2 mitigation. Many
+agroecologists have revealed that the soil carbon pool has prime importance in agroforestry
+systems [50,51]. The outcomes of the current investigation regarding SOC supports the hy-
+pothesis that SOC contents are maximum at 0–15 cm layers, with increased higher buildup
+of tree litter [52]. Higher soil carbon contents in agroforestry systems largely depend on the
+quality and amount of biomass input by non-tree and tree components of the system [53,54]. Moreover, vegetation detritus and litter from pruning under proper agroforestry manage-
+ment return a greater amount of organic carbon to the soil [55,56] (Figure 3). In this study,
+the average SC pools ranged from 10.3 to 15.3 Mg C ha−1 10 km away from the brick kilns. Kimaro et al. [57] reported that a signiﬁcant variation was noticed in carbon sequestered
+
+--- chunk_index=53  page=10  chars=743 ---
+Agriculture 2022, 12, 295 10 of 13
+by an agroforestry system with legume trees, compared with a mono-crop system. Car-
+bon storage in plants can be high in complex agroforestry systems and productivity of
+ﬁeld crops depends on several factors such as age, structure and the way the systems are
+managed [58,59]. The results are comparable with the ﬁndings of other studies [42,60–62],
+which reported that agroforestry can store carbon in the range of 12–228 Mg ha−1. In our
+study it was noticed that maximum tree C stock potential (133 Mg C ha−1) was observed
+in Mandi-Bahauddin followed by Malakwal (62.6 Mg C ha−1), 10 km away from the brick
+kilns, while the minimum value was observed in Phalia ( 9.97 Mg C ha−1), 5 km away
+from brick kilns.
+
+--- chunk_index=54  page=10  chars=691 ---
+In our research, the carbon sequestration potential of an agroforestry
+system (soil, trees and crops) showed differential response in relation to brick kilns (5 and
+10 km away from brick kilns). Similar observations were reported by Gera et al. [63] who
+claimed that the variations in the carbon sequestration potential relate to the mean annual
+increment, which varies with site, age, density and plantation, as well as with the quality
+of planting stock. Agriculture 2022, 11, x FOR PEER REVIEW 10 of 14 
+ 
+ 
+24]. The average stored C stock of agroforestry systems in our study area was 11.46 Mg C 
+ha−1 in soil, 68.5 Mg C ha−1 in trees, 60.4 Mg C ha−1 in wheat and 54.2 Mg C ha−1 in rice.
+
+--- chunk_index=55  page=10  chars=756 ---
+The 
+carbon stocks of simple systems (i.e., combination of single trees with cash crop or grass) 
+and mixed-tree systems are similar to C stock on agroforestry systems reported by other 
+studies in Indonesia [44,45]. Tree biomass accumulation representing the value of tree ba-
+sal area has a correlation with C stock value [46]. The tree species having a higher basal 
+area have the capacity for higher biomass accumulation which results in higher C stocks 
+[47]. Our findings reflect that the plots near the brick kilns showed more growth of trees 
+and potential crops (wheat and rice) in the study area, due to shifting of brick kilns to zig-
+zag technology that reduced dust emission. Similar patterns were reported in other stud-
+ies [21,36,37,48,49].
+
+--- chunk_index=56  page=10  chars=819 ---
+In a terrestrial ecosystem, soil is a very notable system for CO 2 mitigation. Many 
+agroecologists have revealed that the soil carbon pool has prime importance in agrofor-
+estry systems [50,51]. The outcomes of the current investigation regarding SOC supports 
+the hypothesis that SOC contents are maximum at 0–15 cm layers, with increased higher 
+buildup of tree litter [52]. Higher soil carbon contents in agroforestry systems largely de-
+pend on the quality and amount of biomass input by non-tree and tree components of the 
+system [53,54]. Moreover, vegetation detritus and litter from pruning under proper agro-
+forestry management return a greater amount of organic carbon to the soil [55,56] (Figure 
+3). In this study, the average SC pools ranged from 10.3 to 15.3 Mg C ha −1 10 km away 
+from the brick kilns.
+
+--- chunk_index=57  page=10  chars=529 ---
+Kimaro et al. [57] reported that a significant variation was noticed in 
+carbon sequestered by an agroforestry system with legume trees, compared with a mono-
+crop system. Carbon storage in plant s can be high in complex agroforestry systems and 
+productivity of field crops depends on several factors such as age, structure and the way 
+the systems are managed [58,59]. The results are comparable with the findings of other 
+studies [42,60–62], which reported that agroforestry can store carbon in the range of 12 –
+228 Mg ha–1.
+
+--- chunk_index=58  page=10  chars=755 ---
+In our study it was noticed that maximum tree C  stock potential (133 Mg C 
+ha−1) was observed in Mandi -Bahauddin followed by Malakwal (62.6 Mg C ha −1), 10 km 
+away from the brick kilns, while the minimum value was observed in Phalia (9.97 Mg C 
+ha−1), 5 km away from brick kilns. In our research , the carbon sequestration potential of 
+an agroforestry system (soil, trees and crops) showed differential response in relation to 
+brick kilns (5 and 10 km away from brick kilns). Similar observations were reported by 
+Gera et al. [63] who claimed that the variations in the carbon sequestration potential relate 
+to the mean annual increment, which varies with site, age, density and plantation, as well 
+as with the quality of planting stock. Figure 3.
+
+--- chunk_index=59  page=10  chars=669 ---
+Schemes of carbon sequestration in agroforestry. Figure 3. Schemes of carbon sequestration in agroforestry. Various factors such as species, land use type, cultural practices and CO 2 supply
+play important roles in C stock and C sequestration rate [64]. Most farmers planted trees
+on their farmland for a short rotation. After regular intervals, harvesting of cultivated
+trees results in loss of C, but C is again stored when the harvested wood is converted into
+plywood, packaging materials, poles and the manufacturing of furniture [65]. Moreover,
+more accumulation of biomass was observed at the early stages and this decreased with the
+passage of time and age [66].
+
+--- chunk_index=60  page=10  chars=418 ---
+Tree stem sequesters the carbon for a longer time after felling
+as compared to the carbon stored in leaves and branch biomass [59]. These results highlight
+both the current and potential carbon sequestration potential of agroforestry in Pakistan,
+and can be further used in devising strategies for implementing tree planting programs on
+agricultural land and designing future carbon sequestration projects in Pakistan.
+
+--- chunk_index=61  page=10  chars=818 ---
+5. Conclusions
+For the development of better management strategies, understanding of the inﬂuence
+of potential trees on farmlands in linear plantations is critical. Our intensive sampling in
+three tehsils showed that agroforestry systems in Punjab, Pakistan, currently store moderate
+amounts of carbon in plants and soil. In the agroforestry system, the increased soil organic
+carbon was due to litter fall and gave higher monetary returns in terms of more C stock 5
+and 10 km away from the brick kilns. The decreasing order in terms of C stock potential
+of crops was wheat > rice. Variation was observed for C stock in crops (wheat and rice)
+at various distances from the brick kiln at the sampling sites. More C stock in the crops
+was noticed in Mandi-Bahauddin due to the maximum cultivated area, followed by Phalia
+
+--- chunk_index=62  page=11  chars=767 ---
+Agriculture 2022, 12, 295 11 of 13
+and Malakwal. Crops had the maximum potential to store carbon dioxide at different
+sampling points, compared to trees and soil. The descending order in terms of C stock
+potential of agroforestry was crops > trees > soil. The ﬁndings of this study suggest that
+planting of tree species along with farm crops is a sustainable way to mitigate climate
+change by sequestering large amounts of carbon from the atmosphere. However, future
+studies should be conducted to highlight more indicators associated with the operation of
+the brick kilns. Given appropriate incentives, Punjab’s farmers could help Pakistan meet
+its commitments to the Paris Climate Accord through reasonable changes in tree planting
+on existing agroforestry systems.
+
+--- chunk_index=63  page=11  chars=639 ---
+Author Contributions: Conceptualization, Q.u.Z., G.Y. and Y.C.; methodology, N.K., I.T. and S.N.;
+software, G.Y.; formal analysis, N.K.; investigation, Q.u.Z.; resources, N.K.; data curation, K.A.;
+writing—original draft preparation, N.K., M.A., M.W. and A.B.; writing—review and editing, Q.u.Z.
+and Y.C.; supervision, Q.u.Z.; project administration, Q.u.Z. and I.T. All authors have read and agreed
+to the published version of the manuscript. Funding: This research received no external funding. Institutional Review Board Statement: Not applicable. Informed Consent Statement: Not applicable. Data Availability Statement: Not Applicable.
+
+--- chunk_index=64  page=11  chars=212 ---
+Acknowledgments: We are thankful to Umair Riaz (Scientiﬁc Ofﬁcer), Soil and Water Testing Labo-
+ratory for Research Bahawalpur, Punjab Government, Pakistan for providing the research facilities
+for soil analysis.
+
+--- chunk_index=65  page=11  chars=711 ---
+Conﬂicts of Interest: The authors declare no conﬂict of interest. References
+1. Eckstein, D.; Künzel, V .; Schäfer, L. Global Climate Risk Index 2021. Who Suffers Most from Extreme Weather Events 2021,
+2000–2019. Available online: https://www.germanwatch.org/en/19777 (accessed on 25 January 2021). 2. Mondal, M.; Goswami, S.; Ghosh, A.; Oinam, G.; Tiwari, O.N.; Das, P .; Halder, G.N. Production of biodiesel from microalgae
+through biological carbon capture: A review. 3 Biotech2017, 7, 99. [CrossRef]
+3. Khan, M.A.; Khan, J.A.; Ali, Z.; Ahmad, I.; Ahmad, M.N. The challenge of climate change and policy response in Pakistan. Environ. Earth Sci.2016, 75, 412. [CrossRef]
+4. Davenport, F.V .; Diffenbaugh, N.S.
+
+--- chunk_index=66  page=11  chars=779 ---
+Using machine learning to analyze physical causes of climate change: A case study of US
+Midwest extreme precipitation. Geophys. Res. Lett.2021, 48, e2021GL093787. [CrossRef]
+5. Dalby, S. Global climate change and security threats. In Handbook of Security and the Environment; Edward Elgar Publishing:
+Washington, DC, USA, 2021. 6. World Bank. World Development Report 2008: Agriculture for Development; Herndon, V .A., Ed.; World Bank Publisher: Washington,
+DC, USA, 2017; pp. 20172–20960. 7. Reilly, J.; Tubiello, F.; McCarl, B.; Abler, D.; Darwin, R.; Fuglie, K.; Rosenzweig, C. US agriculture and climate change: New results. Clim. Chang.2003, 57, 43–67. [CrossRef]
+8. Van Ginkel, M.; Biradar, C. Drought Early Warning in Agri-Food Systems. Climate 2021, 9, 134. [CrossRef]
+9.
+
+--- chunk_index=67  page=11  chars=947 ---
+Jahan, S.; Falah, S.; Ullah, H.; Ullah, A.; Rauf, N. Antioxidant enzymes status and reproductive health of adult male workers
+exposed to brick kiln pollutants in Pakistan. Environ. Sci. Pollut. Res.2016, 23, 12932–12940. [CrossRef]
+10. Monga, V .; Singh, L.P .; Bhardwaj, A.; Singh, H. Respiratory health in brick kiln workers. Int. J. Phys. Soc. Sci.2012, 2, 226–244. 11. Raza, A.; Qamer, M.F.; Afsheen, S.; Adnan, M.; Naeem, S.; Atiq, M. Particulate matter associated lung function decline in brick
+kiln workers of Jalalpur Jattan, Pakistan. Pak. J. Zool.2014, 46, 237–243. 12. Islam, M.S.; Akbar, A.; Akhtar, A.; Kibria, M.M.; Bhuyan, M.S. Water quality assessment along with pollution sources of the
+Halda River. J. Asiat. Soc. Bangladesh Sci.2017, 43, 61–70. [CrossRef]
+13. Ullah, S.; Ahmad, W.; Majeed, M.T.; Sohail, S. Asymmetric effects of premature deagriculturalization on economic growth and
+CO2 emissions: Fresh evidence from Pakistan.
+
+--- chunk_index=68  page=11  chars=582 ---
+Environ. Sci. Pollut. Res.2021, 28, 66772–66786. [CrossRef]
+14. Vignola, R.; Harvey, C.A.; Bautista-Solis, P .; Avelino, J.; Rapidel, B.; Donatti, C.; Martinez, R. Ecosystem-based adaptation for
+smallholder farmers: Deﬁnitions, opportunities and constraints. Agric. Ecosyst. Environ.2015, 211, 126–132. [CrossRef]
+15. Abbas, F.; Hammad, H.M.; Fahad, S.; Cerdà, A.; Rizwan, M.; Farhad, W.; Bakhat, H.F. Agroforestry: A sustainable environmental
+practice for carbon sequestration under the climate change scenarios a review. Environ. Sci. Pollut. Res.2017, 24, 11177–11191.
+[CrossRef]
+
+--- chunk_index=69  page=12  chars=491 ---
+Agriculture 2022, 12, 295 12 of 13
+16. Arévalo-Gardini, E.; Farfán, A.; Barraza, F.; Arévalo-Hernández, C.O.; Zúñiga-Cernades, L.B.; Alegre, J.; Baligar, V .C.C. Growth,
+Physiological, Nutrient-Uptake- Efﬁciency and Shade-Tolerance Responses of Cacao Genotypes under Different Shades.Agronomy
+2021, 11, 1536. [CrossRef]
+17. Hidayat, N.; Sianipar, J. The Potential of Agroforestry in Supporting Food Security for Peatland Community—A Case Study in
+the Kalampangan Village, Central Kalimantan.
+
+--- chunk_index=70  page=12  chars=716 ---
+Ecol. Eng.2021, 22, 123–130. 18. Murthy, I.K.; Gupta, M.; Tomar, S.; Munsi, M.; Tiwari, R.; Hegde, G.T.; Ravindranath, N.H. Carbon sequestration potential of
+agroforestry systems in India. J. Earth Sci. Clim. Chang.2013, 4, 1–7. [CrossRef]
+19. Saco, P .M.; McDonough, K.R.; Rodriguez, J.F.; Rivera-Zayas, J.; Sandi, S.G. The role of soils in the regulation of hazards and
+extreme events. Philos. Trans. R. Soc. Lond. B2021, 376, 20200178. [CrossRef]
+20. Baig, M.B.; Burgess, P .J.; Fike, J.H. Agroforestry for healthy ecosystems: Constraints, improvement strategies and extension in
+Pakistan. Agrofor. Syst.2021, 95, 995–1013. [CrossRef]
+21. Yasin, G.; Nawaz, M.F.; Martin, T.A.; Niazi, N.K.; Gul, S.; Yousaf, M.T.B.
+
+--- chunk_index=71  page=12  chars=778 ---
+Evaluation of Agroforestry Carbon Storage Status and
+Potential in Irrigated Plains of Pakistan. Forests 2019, 10, 640. [CrossRef]
+22. Giri, K.; Pandey, R.; Jayaraj, R.S.C.; Nainamalai, R.; Ashutosh, S. Regression equations for estimating tree volume and biomass of
+important timber species in Meghalaya, India. Curr. Sci.2019, 116, 75–81. [CrossRef]
+23. Ravindranath, N.H.; Ostwald, M. Methods for Below-Ground Biomass. In Carbon Inventory Methods: Handbook for Greenhouse Gas
+Inventory, Carbon Mitigation and Roundwood Production Projects; Springer Science & Business Media: Dordrecht, The Netherlands,
+2008; Volume 29, pp. 149–156. 24. Thomas, S.C.; Martin, A.R. Carbon content of tree tissues. A Synthesis. Forests 2012, 3, 332–352. [CrossRef]
+25. Rawat, V .R.S.; Kishwan, J.
+
+--- chunk_index=72  page=12  chars=725 ---
+Forest conservationbased, climate changemitigation approach for India.Int. For. Rev.2008, 10, 269–280.
+[CrossRef]
+26. Brown, S.; Gillespie, A.J.; Lugo, A.E. Biomass estimation methods for tropical forests with applications to forest inventory data. For. Sci.1989, 35, 881–902. 27. Cairns, M.A.; Brown, S.; Helmer, E.H.; Baumgardner, G.A. Root biomass allocation in the world’s upland forests.Oecologia 1997,
+111, 1–11. [CrossRef]
+28. Hawkins, T. Biomass and Volume Tables for Eucalyptus camaldulensis, Dalbergia sissoo, Acacia auriculiformis and Cassia siamea in the
+Central Bhabar-Terai of Nepal; Oxford Forestry Institute, University of Oxford: Oxford, UK, 1987; p. 33. 29. Roy, M.M.; Pathak, P .S.; Rai, A.K.; Kushwaha, D.
+
+--- chunk_index=73  page=12  chars=648 ---
+Tree growth and biomass production in Melia azedarach on farm boundaries in
+a semi-arid region. Indian For.2006, 132, 105–110. 30. Das, D.K.; Chaturvedi, O.P . Structure and function of Populus deltoides agroforestry systems in eastern India: 1. Dry matter
+dynamics. Agrofor. Syst.2005, 65, 215–221. [CrossRef]
+31. Rai, S.N. Above ground biomass in tropical rain forests of Western Ghats, India. Indian For.1984, 110, 754–764. 32. Singh, B.; Tripathi, K.P .; Singh, K. Community structure, diversity, biomass and net production in a rehabilitated subtropical
+forest in north India. Open J. For.2011, 1, 11. [CrossRef]
+33. Walkley, A.J.; Black, I.A.
+
+--- chunk_index=74  page=12  chars=516 ---
+An examination of the Degtjare method for determining soil organic matter and a proposed modiﬁcation
+of the chromic acid titration method. Soil Sci.1934, 37, 29–38. [CrossRef]
+34. De Joa Carlos, M.S.; Carlos, C.C.; Warren, A.D.; Lal, R.; Filho, S.P .V .; Piccolo, M.C.; Feigl, B.E. Organic matter dynamics and
+carbon sequestration rates for a tillage chrono sequence in a Brazilian Oxisol. Soil Sci. Soc. Am. J.2001, 65, 1486–1499. 35. Prommer, J.; Walker, T.W.; Wanek, W.; Braun, J.; Zezula, D.; Hu, Y.; Richter, A.
+
+--- chunk_index=75  page=12  chars=274 ---
+Increased microbial growth, biomass, and turnover
+drive soil organic carbon accumulation at higher plant diversity. Glob. Chang. Biol. Bioenergy2020, 26, 669–681. [CrossRef]
+36. Siarudin, M.; Rahman, S.A.; Artati, Y.; Indrajaya, Y.; Narulita, S.; Ardha, M.J.; Larjavaara, M.
+
+--- chunk_index=76  page=12  chars=885 ---
+Carbon Sequestration Potential of
+Agroforestry Systems in Degraded Landscapes in West Java, Indonesia. Forests 2021, 12, 714. [CrossRef]
+37. Khadka, D.; Aryal, A.; Bhatta, K.P .; Dhakal, B.P .; Baral, H. Agroforestry Systems and Their Contribution to Supplying Forest
+Products to Communities in the Chure Range, Central Nepal. Forests 2021, 12, 358. [CrossRef]
+38. Razaﬁndratsima, O.H.; Kamoto, J.F.; Sills, E.O.; Mutta, D.N.; Song, C.; Kabwe, G.; Sunderland, T. Reviewing the evidence on the
+roles of forests and tree-based systems in poverty dynamics. Policy Econ.2021, 131, 102576. [CrossRef]
+39. Ranjan, R. Payments for ecosystems services-based agroforestry and groundwater nitrate remediation: The case of Poplar
+deltoides in Uttar Pradesh, India. J. Clean. Prod.2021, 287, 125059. [CrossRef]
+40. Zomer, R.J.; Neufeldt, H.; Xu, J.; Ahrends, A.; Bossio, D.; Trabucco, A.; Wang, M.
+
+--- chunk_index=77  page=12  chars=519 ---
+Global Tree Cover and Biomass Carbon on
+Agricultural Land: The contribution of agroforestry to global and national carbon budgets. Sci. Rep.2016, 6, 29987. [CrossRef]
+[PubMed]
+41. Grigorov, B.; Assenov, A. Tree Cover and Biomass Carbon on Agricultural Land in Mala Planina. InSmart Geography; Springer:
+Cham, Switzerland, 2020; pp. 265–274. 42. Albrecht, A.; Kandji, S.T. Carbon sequestration in tropical agroforestry systems.Agric. Ecosyst. Environ.2003, 99, 15–27. [CrossRef]
+43. Schwarz, J.; Schnabel, F.; Bauhus, J.
+
+--- chunk_index=78  page=12  chars=200 ---
+A conceptual framework and experimental design for analysing the relationship between
+biodiversity and ecosystem functioning (BEF) in agroforestry systems. Basic Appl. Ecol.2021, 56, 51–60. [CrossRef]
+
+--- chunk_index=79  page=13  chars=576 ---
+Agriculture 2022, 12, 295 13 of 13
+44. Rahayu, S.; Lusiana, B.; van Noordwijk, M. Above ground carbon stock assessment for various land use systems in Nunukan,
+East Kalimantan. In Carbon Stock Monitoring in Nunukan, East Kalimantan: A Spatial and Modelling Approach. Report from the Carbon
+Monitoring Team of the Forest Resource Management for Carbon Sequestration (FORMACS) Project; Lusiana, B., van Noordwijk, M.,
+Rahayu, S., Eds.; World Agroforestry Center: Bogor, Indonesia, 2005; pp. 21–34. 45. Zhu, X.; Liu, W.; Chen, J.; Bruijnzeel, L.A.; Mao, Z.; Yang, X.; Jiang, X.J.
+
+--- chunk_index=80  page=13  chars=416 ---
+Reductions in water, soil and nutrient losses and pesticide
+pollution in agroforestry practices: A review of evidence and processes. Plant Soil2020, 453, 45–86. [CrossRef]
+46. Sajad, S.; Haq, S.M.; Yaqoob, U.; Calixto, E.S.; Hassan, M. Tree composition and standing biomass in forests of the northern part
+of Kashmir Himalaya. Vegetos 2021, 34, 1–10. [CrossRef]
+47. Laskar, S.Y.; Sileshi, G.W.; Nath, A.J.; Das, A.K.
+
+--- chunk_index=81  page=13  chars=224 ---
+Allometric models for above and below-ground biomass of wild Musa stands in
+tropical semi evergreen forests. Glob. Ecol. Conserv.2020, 24, e01208. [CrossRef]
+48. Marone, D.; Poirier, V .; Coyea, M.; Olivier, A.; Munson, A.D.
+
+--- chunk_index=82  page=13  chars=733 ---
+Carbon storage in agroforestry systems in the semi-arid zone of
+Niayes, Senegal. Agrofor. Syst.2017, 91, 941–954. [CrossRef]
+49. Sanogo, K.; Dayamba, D.S.; Villamor, G.B.; Bayala, J. Impacts of Climate Change on Ecosystem Services of Agroforestry Systems
+in the West African Sahel: A Review. Agrofor. Deg. Landsc.2020, 4, 213–224. 50. Huang, L.; Liu, J.; Shao, Q.; Xu, X. Carbon sequestration by forestation across China: Past, present and future. Renew. Sust. Energy
+Rev. 2012, 16, 1291–1299. [CrossRef]
+51. Nawaz, M.F.; Mazhar, K.; Gul, S.; Ahmad, I.; Yasin, G.; Asif, M.; Tanvir, M. Comparing the early stage carbon sequestration rates
+and effects on soil physicochemical properties after two years of planting agroforestry trees.
+
+--- chunk_index=83  page=13  chars=545 ---
+J. Basic Appl. Sci.2017, 13, 527–533. 52. Kaushal, R.; Verma, K.S.; Chaturvedi, O.P .; Alam, N.M. Leaf litter decomposition and nutrient dynamics in four important
+multiple tree species. Range Manag. Agrofor.2012, 33, 20–27. 53. Sarto, M.V .; Borges, W.L.; Sarto, J.R.; Rice, C.W.; Rosolem, C.A. Deep soil carbon stock, origin, and root interaction in a tropical
+integrated crop–livestock system. Agrofor. Syst.2020, 94, 1865–1877. [CrossRef]
+54. Hairiah, K.; van Noordwijk, M.; Sari, R.R.; Saputra, D.D.; Suprayogo, D.; Kurniawan, S.; Gusli, S.
+
+--- chunk_index=84  page=13  chars=289 ---
+Soil carbon stocks in Indonesian
+(agro) forest transitions: Compaction conceals lower carbon concentrations in standard accounting. Agric. Ecosyst. Environ.2020,
+294, 106879. [CrossRef]
+55. Ma Howald, N.M.; Randerson, J.T.; Lindsay, K.; Munoz, E.; Doney, S.C.; Lawrence, P .; Hoffman, F.M.
+
+--- chunk_index=85  page=13  chars=372 ---
+Interactions between land
+use change and carbon cycle feedbacks. Glob. Biogeochem. Cycles2017, 31, 96–113. [CrossRef]
+56. Hübner, R.; Kühnel, A.; Lu, J.; Dettmann, H.; Wang, W.; Wiesmeier, M. Soil carbon sequestration by agroforestry systems in China:
+A meta-analysis. Agric. Ecosyst. Environ.2021, 315, 107437. [CrossRef]
+57. Kimaro, A.A.; Isaac, M.E.; Chamsharma, S.A.O.
+
+--- chunk_index=86  page=13  chars=901 ---
+Carbon pools in tree biomass and soils under rotational woodlot systems in
+eastern Tanzania. In Carbon Sequestration Potential of Agroforestry Systems: Opportunities and Challenges; Kumar, B.M., Nair, P .K.R.,
+Eds.; Springer Science + Business Media: Dordrecht, The Netherlands, 2010; Volume 8, pp. 129–144. 58. Oelbermann, M.; Voroney, R.P .; Gordon, A.M. Carbon sequestration in tropical and temperate agroforestry systems: A review
+with examples from Costa Rica and Southern Canada. Agric. Ecosyst. Environ.2004, 104, 359–377. [CrossRef]
+59. Swamy, S.L.; Puri, S. Biomass production and C-sequestration of Gmelina arborea in plantation and agroforestry system in India. Agrofor. Syst.2005, 64, 181–195. [CrossRef]
+60. Rizvi, R.H.; Dhyani, S.K.; Yadav, R.S.; Singh, R. Biomass production and carbon stock of popular agroforestry systems in
+Yamunanagar and Saharanpur districts of northwestern India.
+
+--- chunk_index=87  page=13  chars=979 ---
+Curr. Sci.2011, 100, 736–742. 61. Wani, N.; Velmurugan, A.; Dadhwal, V .K. Assessment of agricultural crop and soil carbon pools in Madhya Pradesh, India.Trop. Ecol. 2010, 51, 11–19. 62. Yadav, R.P .; Bisht, J.K. Agroforestry: A way to conserve MPTs in North Western Himalaya. Res. J. Agric. For. Sci.2013, 1, 8–13. 63. Gera, M.; Mohan, G.; Bisht, N.S.; Gera, N. Carbon sequestration potential of agroforestry under CDM in Punjab state of India. Indian J. For.2011, 34, 1–10. 64. Ramachandran Nair, P .K.; Mohan Kumar, B.; Nair, V .D. Agroforestry as a strategy for carbon sequestration.J. Plant Nutr. Soil Sci. 2009, 172, 10–23. [CrossRef]
+65. Arora, G.; Chaturvedi, S.; Kaushal, R.; Nain, A.; Tewari, S.; Alam, N.M.; Chaturvedi, O.P . Growth, biomass, carbon stocks, and
+sequestration in an age series of Populus deltoides plantations in Tarai region of central Himalaya. Turk. J. Agric. For.2014, 38,
+550–560. [CrossRef]
+66. Yasin, G.; Nawaz, M.F.; Siddiqui, M.T.; Niazi, N.K.
+
+--- chunk_index=88  page=13  chars=205 ---
+Biomass, carbon stocks and CO2 sequestration in three different aged irrigated
+Populus deltoidesbartr. Ex marsh. Bund planting agroforestry systems. Appl. Ecol. Environ. Res.2018, 16, 6239–6252. [CrossRef]
+

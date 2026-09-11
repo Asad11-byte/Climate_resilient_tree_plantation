@@ -5,7 +5,11 @@ from qdrant_client import AsyncQdrantClient, models
 from app.core.config import Settings
 from app.core.exceptions import ProviderUnavailableError
 from app.core.logging import get_logger
-from app.services.vectorstore.base import VectorRecord, VectorSearchResult, VectorStore
+from app.services.vectorstore.base import (
+    VectorRecord,
+    VectorSearchResult,
+    VectorStore,
+)
 
 logger = get_logger(__name__)
 
@@ -14,6 +18,7 @@ class QdrantVectorStore(VectorStore):
     def __init__(self, settings: Settings):
         self._settings = settings
         self._collection = settings.qdrant_collection
+
         self._client = AsyncQdrantClient(
             url=settings.qdrant_url,
             api_key=settings.qdrant_api_key or None,
@@ -21,8 +26,13 @@ class QdrantVectorStore(VectorStore):
         )
 
     async def ensure_collection(self) -> None:
+        """
+        Ensure that the Qdrant collection exists and that all
+        required payload indexes are configured.
+        """
         try:
             exists = await self._client.collection_exists(self._collection)
+
             if not exists:
                 await self._client.create_collection(
                     collection_name=self._collection,
@@ -31,21 +41,58 @@ class QdrantVectorStore(VectorStore):
                         distance=models.Distance.COSINE,
                     ),
                 )
-                logger.info("Created Qdrant collection '%s'", self._collection)
-        except Exception as exc:  # noqa: BLE001 - translate any client error uniformly
-            raise ProviderUnavailableError("Could not reach or configure Qdrant") from exc
+
+                logger.info(
+                    "Created Qdrant collection '%s'",
+                    self._collection,
+                )
+
+            # ---------------------------------------------------------
+            # IMPORTANT:
+            # Create a keyword payload index for document_id.
+            #
+            # delete_by_metadata() uses:
+            #     FieldCondition(
+            #         key="document_id",
+            #         match=MatchValue(...)
+            #     )
+            #
+            # Qdrant requires an appropriate payload index for this
+            # metadata filter.
+            # ---------------------------------------------------------
+            await self._client.create_payload_index(
+                collection_name=self._collection,
+                field_name="document_id",
+                field_schema=models.PayloadSchemaType.KEYWORD,
+            )
+
+            logger.info(
+                "Ensured Qdrant payload index for 'document_id'"
+            )
+
+        except Exception as exc:  # noqa: BLE001
+            raise ProviderUnavailableError(
+                "Could not reach or configure Qdrant"
+            ) from exc
 
     async def upsert(self, records: List[VectorRecord]) -> None:
         try:
             await self._client.upsert(
                 collection_name=self._collection,
                 points=[
-                    models.PointStruct(id=r.id, vector=r.vector, payload=r.payload)
+                    models.PointStruct(
+                        id=r.id,
+                        vector=r.vector,
+                        payload=r.payload,
+                    )
                     for r in records
                 ],
             )
+
         except Exception as exc:  # noqa: BLE001
-            raise ProviderUnavailableError("Qdrant upsert failed") from exc
+            raise ProviderUnavailableError(
+                "Qdrant upsert failed"
+            ) from exc
 
     async def search(
         self,
@@ -53,14 +100,20 @@ class QdrantVectorStore(VectorStore):
         top_k: int,
         metadata_filter: Optional[Dict[str, Any]] = None,
     ) -> List[VectorSearchResult]:
+
         qfilter = None
+
         if metadata_filter:
             qfilter = models.Filter(
                 must=[
-                    models.FieldCondition(key=k, match=models.MatchValue(value=v))
+                    models.FieldCondition(
+                        key=k,
+                        match=models.MatchValue(value=v),
+                    )
                     for k, v in metadata_filter.items()
                 ]
             )
+
         try:
             results = await self._client.query_points(
                 collection_name=self._collection,
@@ -69,11 +122,18 @@ class QdrantVectorStore(VectorStore):
                 query_filter=qfilter,
                 with_payload=True,
             )
+
         except Exception as exc:  # noqa: BLE001
-            raise ProviderUnavailableError("Qdrant search failed") from exc
+            raise ProviderUnavailableError(
+                "Qdrant search failed"
+            ) from exc
 
         return [
-            VectorSearchResult(id=str(p.id), score=p.score, payload=p.payload or {})
+            VectorSearchResult(
+                id=str(p.id),
+                score=p.score,
+                payload=p.payload or {},
+            )
             for p in results.points
         ]
 
@@ -81,14 +141,116 @@ class QdrantVectorStore(VectorStore):
         try:
             await self._client.delete(
                 collection_name=self._collection,
-                points_selector=models.PointIdsList(points=ids),
+                points_selector=models.PointIdsList(
+                    points=ids
+                ),
             )
+
         except Exception as exc:  # noqa: BLE001
-            raise ProviderUnavailableError("Qdrant delete failed") from exc
+            raise ProviderUnavailableError(
+                "Qdrant delete failed"
+            ) from exc
+
+    async def delete_by_metadata(
+        self,
+        metadata_filter: Dict[str, Any],
+    ) -> None:
+
+        qfilter = models.Filter(
+            must=[
+                models.FieldCondition(
+                    key=k,
+                    match=models.MatchValue(value=v),
+                )
+                for k, v in metadata_filter.items()
+            ]
+        )
+
+        try:
+            await self._client.delete(
+                collection_name=self._collection,
+                points_selector=models.FilterSelector(
+                    filter=qfilter
+                ),
+            )
+
+        except Exception as exc:  # noqa: BLE001
+            raise ProviderUnavailableError(
+                "Qdrant delete_by_metadata failed"
+            ) from exc
+
+    async def scroll_all(
+        self,
+        metadata_filter: Optional[Dict[str, Any]] = None,
+        limit: int = 5000,
+    ) -> List[VectorSearchResult]:
+        """
+        Fetch every point matching the filter.
+
+        Used to build the in-memory BM25 lexical index, which needs
+        the full text corpus rather than a vector-similarity-ranked
+        subset.
+
+        Qdrant's scroll API is paginated to avoid loading everything
+        in one request.
+        """
+
+        qfilter = None
+
+        if metadata_filter:
+            qfilter = models.Filter(
+                must=[
+                    models.FieldCondition(
+                        key=k,
+                        match=models.MatchValue(value=v),
+                    )
+                    for k, v in metadata_filter.items()
+                ]
+            )
+
+        results: List[VectorSearchResult] = []
+        offset = None
+
+        try:
+            while True:
+
+                remaining = limit - len(results)
+
+                if remaining <= 0:
+                    break
+
+                points, offset = await self._client.scroll(
+                    collection_name=self._collection,
+                    scroll_filter=qfilter,
+                    limit=min(256, remaining),
+                    offset=offset,
+                    with_payload=True,
+                    with_vectors=False,
+                )
+
+                results.extend(
+                    VectorSearchResult(
+                        id=str(p.id),
+                        score=0.0,
+                        payload=p.payload or {},
+                    )
+                    for p in points
+                )
+
+                if offset is None or len(results) >= limit:
+                    break
+
+        except Exception as exc:  # noqa: BLE001
+            raise ProviderUnavailableError(
+                "Qdrant scroll failed"
+            ) from exc
+
+        return results[:limit]
 
     async def health_check(self) -> bool:
         try:
             await self._client.get_collections()
             return True
+
         except Exception:  # noqa: BLE001
             return False
