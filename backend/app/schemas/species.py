@@ -12,6 +12,8 @@ class TreeSpecies(BaseModel):
     common_name: str
     scientific_name: str
     local_names: Optional[List[str]] = None
+    image_url: Optional[str] = None
+    image_source: Optional[str] = None
     soil_requirements: Optional[str] = None
     water_requirement: Optional[str] = None
     drought_tolerance: Optional[str] = None
@@ -28,7 +30,12 @@ class TreeSpecies(BaseModel):
 
     def display_dict(self) -> dict:
         """Render nulls as the explicit 'not available' string for API/UI
-        consumption — never silently omit or fabricate a value."""
+        consumption — never silently omit or fabricate a value.
+
+        image_url / image_source are deliberately excluded from this
+        substitution: a missing image should render as the frontend's
+        placeholder icon, not as literal "Not available in current
+        evidence" text sitting where a photo would go."""
         data = self.model_dump()
         for field in (
             "soil_requirements", "water_requirement", "drought_tolerance",
