@@ -60,7 +60,7 @@ export default function ChatInput({ onSend, disabled, locationLabel, onClearLoca
           placeholder="Ask about a species, soil, water, or plantation approach…"
           disabled={disabled}
           rows={1}
-          className="flex-1 resize-none bg-transparent py-1.5 text-sm text-soil-900 placeholder:text-bark-500/70 focus:outline-none disabled:opacity-60"
+          className="focus-ring-none flex-1 resize-none bg-transparent py-1.5 text-sm text-soil-900 placeholder:text-bark-500/70 focus:outline-none disabled:opacity-60"
         />
         <button
           type="submit"

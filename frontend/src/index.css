@@ -207,4 +207,38 @@ html {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  /* -----------------------------------------------------------------------
+   Scrollbar — the default OS scrollbar (thick, gray, arrow buttons) reads
+   as unfinished against this palette, especially in dark mode. Thin,
+   rounded, colored with the app's own tokens instead — still docks flush
+   against the right edge of whichever element scrolls (main, the chat
+   list, etc.), just no longer looks like a stray native control sitting
+   on top of the design. Firefox uses scrollbar-width/-color; everything
+   else (Chrome, Edge, Safari) uses the ::-webkit-scrollbar-* pseudo-
+   elements — both are declared so it's themed everywhere.
+----------------------------------------------------------------------- */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-bark-500) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--color-bark-500);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-leaf-600);
+}
 }

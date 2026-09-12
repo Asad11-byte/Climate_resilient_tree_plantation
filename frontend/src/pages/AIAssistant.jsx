@@ -1,18 +1,45 @@
 import { useEffect, useRef } from "react";
 import { useChat } from "../hooks/useChat";
+import { useConversations } from "../hooks/useConversations";
+import Sidebar from "../components/common/Sidebar";
+import ThemeToggle from "../components/common/ThemeToggle";
 import ChatMessage from "../components/chat/ChatMessage";
 import ChatInput from "../components/chat/ChatInput";
 import ErrorState from "../components/common/ErrorState";
-import EmptyState from "../components/common/EmptyState";
 import { ThinkingIndicator } from "../components/common/Skeletons";
 
 export default function AIAssistant({ mapSelection, onClearMapSelection }) {
-  const { messages, loading, error, sendMessage, retryLast } = useChat();
+  const { messages, loading, error, sendMessage, retryLast, sessionId, startNewChat, loadConversation } =
+    useChat();
+  const {
+    conversations,
+    activeConversationId,
+    setActiveConversationId,
+    loading: conversationsLoading,
+    error: conversationsError,
+    renameConversation,
+    deleteConversation,
+    loadMessages,
+    refresh,
+  } = useConversations();
   const scrollRef = useRef(null);
 
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, loading]);
+
+  // useChat's sessionId is the source of truth for "which backend session is
+  // this chat pane on" — it only changes when a message actually creates or
+  // confirms one. Whenever it moves to a session the sidebar doesn't know is
+  // active yet (typically: first message of a brand-new chat), sync the
+  // sidebar's selection and refresh the list so the new/updated session
+  // (with its generated title) shows up without a manual reload.
+  useEffect(() => {
+    if (sessionId && sessionId !== activeConversationId) {
+      setActiveConversationId(sessionId);
+      refresh();
+    }
+  }, [sessionId, activeConversationId, setActiveConversationId, refresh]);
 
   const locationLabel = mapSelection
     ? `${mapSelection.latitude.toFixed(4)}, ${mapSelection.longitude.toFixed(4)}`
@@ -22,16 +49,37 @@ export default function AIAssistant({ mapSelection, onClearMapSelection }) {
     sendMessage(query, mapSelection ? { latitude: mapSelection.latitude, longitude: mapSelection.longitude } : {});
   };
 
+  const handleSelectConversation = async (id) => {
+    setActiveConversationId(id);
+    try {
+      const history = await loadMessages(id);
+      loadConversation(id, history);
+    } catch {
+      // loadMessages already surfaces its own error via whatever calls it;
+      // fall back to at least keeping the sidebar selection in sync.
+    }
+  };
+
+  const handleNewChat = () => {
+    startNewChat();
+    setActiveConversationId(null);
+  };
+
   return (
-    // h-full, not a guessed viewport-minus-pixels value — Layout's <main>
-    // is now the one true scroll container, so this only needs to fill
-    // whatever height main actually gives it. That's what fixes the
-    // double-scrollbar bug: previously this page's own guessed height
-    // didn't quite match main's real available height, so both this
-    // page's inner list AND the outer page could end up scrollable at
-    // once.
-    <div className="flex h-full flex-col">
-      <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col overflow-hidden">
+    <div className="flex h-full overflow-hidden">
+      <Sidebar
+        conversations={conversations}
+        activeConversationId={activeConversationId}
+        onSelectConversation={handleSelectConversation}
+        onNewChat={handleNewChat}
+        onRenameConversation={renameConversation}
+        onDeleteConversation={deleteConversation}
+        loading={conversationsLoading}
+        error={conversationsError}
+        
+      />
+
+      <div className="flex h-full flex-1 flex-col overflow-hidden">
         {messages.length === 0 ? (
           <div className="flex flex-1 flex-col items-center justify-center px-4 text-center">
             <h1 className="font-[var(--font-display)] text-2xl font-semibold text-soil-900">AI Assistant</h1>
@@ -44,23 +92,27 @@ export default function AIAssistant({ mapSelection, onClearMapSelection }) {
             </p>
           </div>
         ) : (
-          <div className="flex-1 space-y-4 overflow-y-auto px-4 pb-6 pt-6 sm:px-2">
-            {messages.map((message, i) => (
-              <ChatMessage key={i} message={message} />
-            ))}
-            {loading && <ThinkingIndicator />}
-            {error && <ErrorState error={error} onRetry={retryLast} />}
-            <div ref={scrollRef} />
+          <div className="flex-1 overflow-y-auto">
+            <div className="mx-auto max-w-3xl space-y-4 px-4 pb-6 pt-6 sm:px-2">
+              {messages.map((message, i) => (
+                <ChatMessage key={i} message={message} />
+              ))}
+              {loading && <ThinkingIndicator />}
+              {error && <ErrorState error={error} onRetry={retryLast} />}
+              <div ref={scrollRef} />
+            </div>
           </div>
         )}
 
-        <div className="sticky bottom-0 bg-gradient-to-t from-page from-65% to-transparent px-4 pb-4 pt-6 sm:px-2">
-          <ChatInput
-            onSend={handleSend}
-            disabled={loading}
-            locationLabel={locationLabel}
-            onClearLocation={onClearMapSelection}
-          />
+        <div className="bg-gradient-to-t from-page from-65% to-transparent px-4 pb-4 pt-6 sm:px-2">
+          <div className="mx-auto max-w-3xl">
+            <ChatInput
+              onSend={handleSend}
+              disabled={loading}
+              locationLabel={locationLabel}
+              onClearLocation={onClearMapSelection}
+            />
+          </div>
         </div>
       </div>
     </div>
