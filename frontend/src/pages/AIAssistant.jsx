@@ -1,12 +1,30 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useChat } from "../hooks/useChat";
 import { useConversations } from "../hooks/useConversations";
+import { useAuth } from "../context/AuthContext";
 import Sidebar from "../components/common/Sidebar";
-import ThemeToggle from "../components/common/ThemeToggle";
 import ChatMessage from "../components/chat/ChatMessage";
 import ChatInput from "../components/chat/ChatInput";
 import ErrorState from "../components/common/ErrorState";
 import { ThinkingIndicator } from "../components/common/Skeletons";
+
+function SidebarAccountFooter({ email, onSignOut }) {
+  return (
+    <div className="flex items-center justify-between gap-2">
+      <div className="min-w-0">
+        <p className="truncate text-xs text-bark-500">Signed in as</p>
+        <p className="truncate text-sm text-soil-900">{email}</p>
+      </div>
+      <button
+        type="button"
+        onClick={onSignOut}
+        className="shrink-0 rounded-md border border-bark-500/20 px-2.5 py-1.5 text-xs font-medium text-bark-700 hover:bg-bark-500/10"
+      >
+        Sign out
+      </button>
+    </div>
+  );
+}
 
 export default function AIAssistant({ mapSelection, onClearMapSelection }) {
   const { messages, loading, error, sendMessage, retryLast, sessionId, startNewChat, loadConversation } =
@@ -22,18 +40,22 @@ export default function AIAssistant({ mapSelection, onClearMapSelection }) {
     loadMessages,
     refresh,
   } = useConversations();
+  const { user, signOut } = useAuth();
   const scrollRef = useRef(null);
+
+  // Sidebar is `fixed` now (see Sidebar.jsx's file-level comment), so it no
+  // longer reserves space as a flex sibling — the content pane below has to
+  // reserve matching space itself. Lifting `collapsed` here (via
+  // onCollapsedChange) is what lets that space track the rail's actual
+  // width instead of guessing one fixed value.
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(
+    () => typeof window !== "undefined" && window.localStorage.getItem("sidebar:collapsed") === "1",
+  );
 
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, loading]);
 
-  // useChat's sessionId is the source of truth for "which backend session is
-  // this chat pane on" — it only changes when a message actually creates or
-  // confirms one. Whenever it moves to a session the sidebar doesn't know is
-  // active yet (typically: first message of a brand-new chat), sync the
-  // sidebar's selection and refresh the list so the new/updated session
-  // (with its generated title) shows up without a manual reload.
   useEffect(() => {
     if (sessionId && sessionId !== activeConversationId) {
       setActiveConversationId(sessionId);
@@ -65,8 +87,23 @@ export default function AIAssistant({ mapSelection, onClearMapSelection }) {
     setActiveConversationId(null);
   };
 
+  // Wipes this browser's visible chat state on sign-out so the next person
+  // to use it doesn't land on the previous user's conversation — the
+  // conversations list itself belongs to the signed-out account and simply
+  // won't be fetchable once the token is gone, but the in-memory message
+  // pane needs an explicit reset since it isn't re-derived from that list.
+  const handleSignOut = async () => {
+    await signOut();
+    startNewChat();
+    setActiveConversationId(null);
+  };
+
   return (
-    <div className="flex h-full overflow-hidden">
+    // No more flex-row wrapper around Sidebar — it isn't a flow participant
+    // anymore. `pt-14 md:pt-0` clears the fixed mobile top bar; the
+    // `md:pl-*` swap clears the fixed desktop rail at whichever width it's
+    // currently at.
+    <div className={`h-full pt-14 transition-[padding] duration-200 ease-in-out md:pt-0 ${sidebarCollapsed ? "md:pl-16" : "md:pl-72"}`}>
       <Sidebar
         conversations={conversations}
         activeConversationId={activeConversationId}
@@ -74,12 +111,13 @@ export default function AIAssistant({ mapSelection, onClearMapSelection }) {
         onNewChat={handleNewChat}
         onRenameConversation={renameConversation}
         onDeleteConversation={deleteConversation}
+        onCollapsedChange={setSidebarCollapsed}
         loading={conversationsLoading}
         error={conversationsError}
-        
+        footer={<SidebarAccountFooter email={user?.email} onSignOut={handleSignOut} />}
       />
 
-      <div className="flex h-full flex-1 flex-col overflow-hidden">
+      <div className="flex h-full flex-col overflow-hidden">
         {messages.length === 0 ? (
           <div className="flex flex-1 flex-col items-center justify-center px-4 text-center">
             <h1 className="font-[var(--font-display)] text-2xl font-semibold text-soil-900">AI Assistant</h1>

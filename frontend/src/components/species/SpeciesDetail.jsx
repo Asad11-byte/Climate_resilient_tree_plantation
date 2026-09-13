@@ -1,4 +1,5 @@
 import { fieldValue } from "./fieldValue";
+import LeafPlaceholderIcon from "../common/LeafPlaceholderIcon";
 
 const ROWS = [
   ["Local names", "local_names"],
@@ -16,7 +17,23 @@ const ROWS = [
 export default function SpeciesDetail({ species }) {
   return (
     <div>
-      <p className="font-[var(--font-display)] text-3xl font-semibold text-soil-900">{species.common_name}</p>
+      {species.image_url ? (
+        <img
+          src={species.image_url}
+          alt={species.common_name}
+          className="h-64 w-full rounded-lg object-cover"
+          loading="lazy"
+        />
+      ) : (
+        <div className="flex h-64 w-full items-center justify-center rounded-lg bg-panel">
+          <LeafPlaceholderIcon className="h-12 w-12 text-bark-500" />
+        </div>
+      )}
+      {species.image_url && species.image_source && (
+        <p className="mt-1 text-xs text-bark-500">Photo: {species.image_source}</p>
+      )}
+
+      <p className="mt-4 font-[var(--font-display)] text-3xl font-semibold text-soil-900">{species.common_name}</p>
       <p className="mt-1 text-lg italic text-bark-500">{species.scientific_name}</p>
 
       {species.description && (

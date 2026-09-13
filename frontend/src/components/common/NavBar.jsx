@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import logoMark from "../../assets/logo-mark.png";
 import ThemeToggle from "./ThemeToggle";
@@ -37,13 +37,35 @@ function NavLinks({ onNavigate, className = "" }) {
 
 export default function NavBar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const headerRef = useRef(null);
+
+  // Publish our real rendered height as a CSS variable on the root element.
+  // Anything elsewhere in the app that's fixed-positioned relative to the
+  // true viewport (Sidebar's rail/drawer, most notably) reads this instead
+  // of a guessed pixel value — so it stays correct even when this header's
+  // height changes (nav links wrapping at odd widths, the mobile dropdown
+  // opening, a future logo/copy change, etc.) instead of silently drifting
+  // out of sync with a hardcoded offset.
+  useEffect(() => {
+    const el = headerRef.current;
+    if (!el) return undefined;
+
+    const publishHeight = () => {
+      document.documentElement.style.setProperty("--navbar-height", `${el.offsetHeight}px`);
+    };
+
+    publishHeight();
+    const observer = new ResizeObserver(publishHeight);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [mobileOpen]);
 
   return (
     // Brand green stays constant across light/dark mode on purpose — it's
     // fixed identity color (sampled from the logo), not a themeable
     // surface, so the site keeps a consistent visual anchor at the top
     // regardless of which mode the content area is in.
-    <header className="sticky top-0 z-20 bg-brand-900">
+    <header ref={headerRef} className="sticky top-0 z-20 bg-brand-900">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
         <NavLink to="/" className="flex items-center gap-2.5" onClick={() => setMobileOpen(false)}>
           <img src={logoMark} alt="" className="h-9 w-9 object-contain" />

@@ -39,9 +39,9 @@
 
   /* ---------------------------------------------------------------------
      Brand — pulled directly from the logo (sampled, not eyeballed):
-     deep forest #0f523b, bright leaf #7ed957. This is the identity color;
-     it appears deliberately (nav, hero, footer, primary buttons), not
-     wallpapered everywhere.
+     deep forest #0f523b, bright leaf #7ed957. This is the single source
+     of truth for the identity/accent hue — everything green in the app
+     (nav, buttons, links, focus rings) traces back to this one scale.
   --------------------------------------------------------------------- */
   --color-brand-900: #0f523b;
   --color-brand-800: #14603f;
@@ -51,21 +51,56 @@
   --color-brand-400: #7ed957;
   --color-brand-100: #e3f6d9;
 
-  /* Leaf — kept as the general "green accent" scale used across existing
-     UI (buttons, links, active states); retuned toward brand-700/600 so
-     it reads as the same identity as the logo rather than a separate
-     green. */
-  --color-leaf-100: #e3f6d9;
+  /* Leaf — the "general accent" scale used across existing UI classNames
+     (bg-leaf-700, border-leaf-600, text-leaf-700, etc.). Every step below
+     ALIASES brand-* via var() rather than repeating a literal hex — that
+     was the actual bug before (leaf and brand carried identical literals
+     that could silently drift apart, and leaf-800 had grabbed brand-900's
+     value instead of brand-800's, breaking the scale's internal step
+     order). Aliasing means there is now exactly one place — the brand
+     scale above — that defines what "the green" actually is; leaf is
+     purely a second name for reaching it from existing component code.
+     leaf-200 has no brand equivalent (a distinct desaturated sage used
+     for subtle fills) so it stays a literal. */
+  --color-leaf-100: var(--color-brand-100);
   --color-leaf-200: #b9d5bc;
-  --color-leaf-500: #2fa06a;
-  --color-leaf-600: #1f8f5c;
-  --color-leaf-700: #16794f;
-  --color-leaf-800: #0f523b;
+  --color-leaf-500: var(--color-brand-500);
+  --color-leaf-600: var(--color-brand-600);
+  --color-leaf-700: var(--color-brand-700);
+  --color-leaf-800: var(--color-brand-800);
 
-  /* Functional hues — each has one job, never used decoratively. */
-  --color-clay-600: #b3552f;   /* evidence gaps, destructive */
-  --color-amber-500: #c98a2b;  /* caution, degraded status */
-  --color-sky-600: #3d6f8a;    /* water/climate data only */
+  /* ---------------------------------------------------------------------
+     Functional hues — each has one job, never used decoratively.
+
+     amber/clay each now have a base tone (used for icons, badge fills,
+     and the low-opacity *-subtle backgrounds, where WCAG text-contrast
+     rules don't apply) plus explicit -text steps that ARE contrast-
+     verified for actual text/icon-on-background use — light and dark
+     mode need different literals here, not the same hex pushed lighter
+     or darker uniformly, since "darker" helps light-mode contrast but
+     actively hurts dark-mode contrast against a dark page. Verified via
+     the WCAG relative-luminance formula, not eyeballed:
+
+       clay-700-text   on soil-50 (light)   6.55:1  (AA normal-text needs 4.5)
+       clay-400-text   on soil-950 (dark)   6.02:1
+       amber-700-text  on soil-50 (light)   6.44:1
+       amber-400-text  on soil-950 (dark)   8.27:1
+
+     The old single amber-500/clay-600 pair failed AA in at least one
+     mode each (amber-500 was 2.74:1 on light — a real failure, not a
+     near-miss; clay-600 dropped to 3.75:1 on dark, under the 4.5:1 bar
+     for normal-size text). See --color-warning/--color-danger below and
+     their .dark overrides for how these actually get used.
+  --------------------------------------------------------------------- */
+  --color-clay-600:      #b3552f;  /* badge fills, icons, *-subtle backgrounds only */
+  --color-clay-700-text: #8c4527;  /* light-mode danger TEXT — AA verified */
+  --color-clay-400-text: #d97a4f;  /* dark-mode danger TEXT — AA verified */
+
+  --color-amber-500:      #c98a2b; /* badge fills, icons, *-subtle backgrounds only */
+  --color-amber-700-text: #7a5216; /* light-mode warning TEXT — AA verified */
+  --color-amber-400-text: #d9a53f; /* dark-mode warning TEXT — AA verified */
+
+  --color-sky-600: #3d6f8a;   /* water/climate data only */
 
   /* ---------------------------------------------------------------------
      Layered surfaces — page / panel / card are three distinct elevations,
@@ -79,7 +114,11 @@
   --color-card:  #ffffff;                /* raised cards, list items */
 
   /* ---------------------------------------------------------------------
-     Semantic layer — name colors by role, not hue.
+     Semantic layer — name colors by role, not hue. This is the layer new
+     component code should target (text-text, text-text-muted, bg-warning,
+     text-danger, etc.) instead of reaching for a numbered scale step
+     directly — it's what makes the .dark overrides below actually work
+     without touching every component.
   --------------------------------------------------------------------- */
   --color-border:         color-mix(in srgb, var(--color-bark-500) 20%, transparent);
   --color-border-strong:  color-mix(in srgb, var(--color-soil-800) 30%, transparent);
@@ -92,9 +131,9 @@
   --color-accent-hover:   var(--color-leaf-600);
   --color-accent-subtle:  var(--color-leaf-100);
 
-  --color-warning:        var(--color-amber-500);
+  --color-warning:        var(--color-amber-700-text);  /* light-mode default */
   --color-warning-subtle: color-mix(in srgb, var(--color-amber-500) 8%, transparent);
-  --color-danger:         var(--color-clay-600);
+  --color-danger:         var(--color-clay-700-text);   /* light-mode default */
   --color-danger-subtle:  color-mix(in srgb, var(--color-clay-600) 6%, transparent);
   --color-data:           var(--color-sky-600);
 
@@ -144,6 +183,18 @@
    text-bark-700/border-bark-500 etc. re-themes automatically. Brand green
    (nav/hero/footer) stays constant across both modes on purpose — that's
    fixed identity color, not a themeable surface.
+
+   NOTE on the soil-900/bark-700/bark-500/soil-800 overrides below: these
+   redefine what those numbered steps *resolve to* under dark mode (e.g.
+   soil-900 becomes a light color, since it's used directly as text-soil-900
+   throughout existing component markup rather than through the text-text
+   semantic utility). This keeps every existing component correct without
+   an app-wide className rewrite, but it does mean the numbered scale is
+   not mode-invariant — soil-900 is "near-black" in light mode and
+   "near-white" in dark mode. Any *new* text/border color should be added
+   via the semantic layer (--color-text, --color-text-muted, --color-border)
+   instead of a raw numbered step, so it stays consistent in both modes
+   without needing a matching entry here.
 ----------------------------------------------------------------------- */
 .dark {
   --color-page:  var(--color-soil-950);
@@ -158,7 +209,13 @@
   --color-leaf-100: color-mix(in srgb, var(--color-brand-400) 14%, transparent);
 
   --color-border:        color-mix(in srgb, var(--color-bark-500) 25%, transparent);
-  --color-border-strong: color-mix(in srgb, var(--color-bark-500) 45%, transparent);
+  --color-border-strong:  color-mix(in srgb, var(--color-bark-500) 45%, transparent);
+
+  /* Warning/danger flip to the dark-mode-verified text steps — see the
+     contrast table in the @theme block above for why this can't just be
+     the same hex as light mode. */
+  --color-warning: var(--color-amber-400-text);
+  --color-danger:  var(--color-clay-400-text);
 
   --shadow-sm: 0 1px 2px color-mix(in srgb, black 30%, transparent);
   --shadow-md: 0 4px 12px -2px color-mix(in srgb, black 40%, transparent);
@@ -200,14 +257,7 @@ html {
   color: var(--color-soil-50);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-  /* -----------------------------------------------------------------------
+/* -----------------------------------------------------------------------
    Scrollbar — the default OS scrollbar (thick, gray, arrow buttons) reads
    as unfinished against this palette, especially in dark mode. Thin,
    rounded, colored with the app's own tokens instead — still docks flush
@@ -216,6 +266,13 @@ html {
    on top of the design. Firefox uses scrollbar-width/-color; everything
    else (Chrome, Edge, Safari) uses the ::-webkit-scrollbar-* pseudo-
    elements — both are declared so it's themed everywhere.
+
+   BUG FIX: this block previously lived *inside* the
+   `@media (prefers-reduced-motion: reduce)` block below, so it only ever
+   applied to users with that OS accessibility setting turned on — every
+   other visitor got the unstyled native scrollbar. Moved out to apply
+   unconditionally, since scrollbar color/width has nothing to do with
+   motion preferences.
 ----------------------------------------------------------------------- */
 * {
   scrollbar-width: thin;
@@ -241,4 +298,12 @@ html {
 *::-webkit-scrollbar-thumb:hover {
   background-color: var(--color-leaf-600);
 }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

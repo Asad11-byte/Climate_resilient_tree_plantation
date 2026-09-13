@@ -1,7 +1,8 @@
 from typing import List
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 
+from app.core.auth import CurrentUser, get_current_user
 from app.core.dependencies import get_species_repository
 from app.core.exceptions import ProviderUnavailableError
 from app.schemas.species import TreeSpecies
@@ -10,7 +11,7 @@ router = APIRouter(tags=["species"])
 
 
 @router.get("/species", response_model=List[TreeSpecies])
-async def list_species() -> List[TreeSpecies]:
+async def list_species(current_user: CurrentUser = Depends(get_current_user)) -> List[TreeSpecies]:
     try:
         repo = get_species_repository()
         rows = await repo.list_all()
@@ -20,7 +21,9 @@ async def list_species() -> List[TreeSpecies]:
 
 
 @router.get("/species/{species_id}", response_model=TreeSpecies)
-async def get_species(species_id: str) -> TreeSpecies:
+async def get_species(
+    species_id: str, current_user: CurrentUser = Depends(get_current_user)
+) -> TreeSpecies:
     try:
         repo = get_species_repository()
         row = await repo.get_by_id(species_id)

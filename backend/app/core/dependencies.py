@@ -16,6 +16,8 @@ from supabase import Client
 
 from app.core.config import Settings, get_settings
 from app.repositories.base import build_supabase_client
+from app.repositories.chat_message_repository import ChatMessageRepository
+from app.repositories.chat_session_repository import ChatSessionRepository
 from app.repositories.environmental_repository import EnvironmentalRepository
 from app.repositories.species_repository import SpeciesRepository
 from app.services.embeddings.base import EmbeddingProvider
@@ -69,6 +71,14 @@ def get_species_repository() -> SpeciesRepository:
 
 def get_environmental_repository() -> EnvironmentalRepository:
     return EnvironmentalRepository(get_supabase_client())
+
+
+def get_chat_session_repository() -> ChatSessionRepository:
+    return ChatSessionRepository(get_supabase_client())
+
+
+def get_chat_message_repository() -> ChatMessageRepository:
+    return ChatMessageRepository(get_supabase_client())
 
 
 @lru_cache

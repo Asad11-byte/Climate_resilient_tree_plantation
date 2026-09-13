@@ -50,6 +50,39 @@ function NoEvidenceCard({ response }) {
 }
 
 function AnswerCard({ response }) {
+  const PLANT_CATEGORIES = ["tree_species", "plantation"];
+
+function LeafBadge() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4 text-leaf-600 shrink-0">
+      <path
+        d="M12 3c-4 3-7 6.5-7 10.5A7 7 0 0 0 12 21a7 7 0 0 0 7-7.5C19 9.5 16 6 12 3Z"
+        fill="currentColor"
+        fillOpacity="0.9"
+      />
+      <path d="M12 21V11" stroke="var(--color-card)" strokeWidth="1.4" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function AnswerCard({ response }) {
+  const isPlantRecommendation = PLANT_CATEGORIES.includes(response.query_category);
+
+  return (
+    <div className="max-w-[85%] rounded-lg border border-bark-500/15 bg-card px-4 py-3 shadow-sm">
+      {response.query_category && (
+        <p className="flex items-center gap-1.5 text-[0.7rem] font-semibold uppercase tracking-wide text-leaf-700">
+          {isPlantRecommendation && <LeafBadge />}
+          {response.query_category.replace("_", " ")}
+        </p>
+      )}
+      <MarkdownAnswer className="mt-1">{response.answer}</MarkdownAnswer>
+      <SourceList sources={response.sources} />
+    </div>
+  );
+}
+  
+  
   return (
     <div className="max-w-[85%] rounded-lg border border-bark-500/15 bg-card px-4 py-3 shadow-sm">
       {response.query_category && (

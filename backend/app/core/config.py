@@ -48,6 +48,10 @@ class Settings(BaseSettings):
     # --- Supabase ---
     supabase_url: str = Field(default="")
     supabase_key: str = Field(default="")
+    # Project Settings -> API -> JWT Secret. Used to verify Supabase Auth
+    # access tokens locally (get_current_user), with no network round-trip
+    # to Supabase per request. NOT the same value as supabase_key.
+    supabase_jwt_secret: str = Field(default="")
 
     # --- Retrieval defaults ---
     retrieval_top_k_candidates: int = Field(default=20)

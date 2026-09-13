@@ -1,8 +1,13 @@
 from fastapi import APIRouter, Depends, HTTPException
 
-from app.core.dependencies import get_chat_service
+from app.core.auth import CurrentUser, get_current_user
+from app.core.dependencies import (
+    get_chat_message_repository,
+    get_chat_service,
+    get_chat_session_repository,
+)
 from app.core.exceptions import ProviderUnavailableError
-from app.repositories import chat_repository as sessions_repo
+from app.repositories.chat_session_repository import truncate_title
 from app.schemas.chat import ChatRequest, ChatResponse
 from app.schemas.retrieval import SourceSchema
 from app.services.chat.service import ChatService
@@ -13,19 +18,25 @@ router = APIRouter(tags=["chat"])
 @router.post("/chat", response_model=ChatResponse)
 async def chat(
     request: ChatRequest,
+    current_user: CurrentUser = Depends(get_current_user),
     chat_service: ChatService = Depends(get_chat_service),
 ) -> ChatResponse:
-    # Every chat turn needs somewhere to land: reuse the given session, or
-    # start a new one so the sidebar has something to show immediately.
+    session_repo = get_chat_session_repository()
+    message_repo = get_chat_message_repository()
+
+    # Every chat turn needs somewhere to land: reuse the given session (only
+    # if it belongs to this user — 404 either way if it doesn't exist or
+    # belongs to someone else, so a session id can't be used to probe for
+    # other accounts' sessions), or start a new one.
     if request.session_id:
-        session = sessions_repo.get_session(str(request.session_id))
+        session = await session_repo.get_for_user(str(request.session_id), current_user.user_id)
         if not session:
             raise HTTPException(status_code=404, detail="Session not found")
     else:
-        session = sessions_repo.create_session()
+        session = await session_repo.create(current_user.user_id)
     session_id = str(session["id"])
 
-    sessions_repo.save_message(session_id, role="user", content=request.query)
+    await message_repo.save(session_id, role="user", content=request.query)
 
     try:
         result = await chat_service.chat(
@@ -39,7 +50,7 @@ async def chat(
 
     sources_payload = [s.__dict__ for s in result.sources]
 
-    sessions_repo.save_message(
+    await message_repo.save(
         session_id,
         role="assistant",
         content=result.answer,
@@ -48,10 +59,10 @@ async def chat(
         sources=sources_payload,
     )
 
-    # Title the session from the first user message the first time only;
-    # every turn after that just bumps updated_at for recency ordering.
-    title = sessions_repo.truncate_title(request.query) if not session.get("title") else None
-    sessions_repo.touch_session(session_id, title=title)
+    # Title the session from the first user message once; every turn after
+    # that just bumps updated_at for recency ordering.
+    title = truncate_title(request.query) if not session.get("title") else None
+    await session_repo.touch(session_id, current_user.user_id, title=title)
 
     return ChatResponse(
         query=request.query,
