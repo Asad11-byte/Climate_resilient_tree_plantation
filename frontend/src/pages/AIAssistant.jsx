@@ -1,6 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { useChat } from "../hooks/useChat";
-import { useConversations } from "../hooks/useConversations";
 import { useAuth } from "../context/AuthContext";
 import Sidebar from "../components/common/Sidebar";
 import ChatMessage from "../components/chat/ChatMessage";
@@ -26,9 +24,13 @@ function SidebarAccountFooter({ email, onSignOut }) {
   );
 }
 
-export default function AIAssistant({ mapSelection, onClearMapSelection }) {
-  const { messages, loading, error, sendMessage, retryLast, sessionId, startNewChat, loadConversation } =
-    useChat();
+// `chat` and `conversations` are now owned by ProtectedApp (see App.jsx)
+// and passed in as props — this component no longer calls useChat()/
+// useConversations() itself, so navigating away no longer unmounts (and
+// resets) that state. Only mapSelection/onClearMapSelection were lifted
+// like this before; chat/conversations follow the identical pattern now.
+export default function AIAssistant({ mapSelection, onClearMapSelection, chat, conversations: conversationsState }) {
+  const { messages, loading, error, sendMessage, retryLast, sessionId, startNewChat, loadConversation } = chat;
   const {
     conversations,
     activeConversationId,
@@ -39,15 +41,17 @@ export default function AIAssistant({ mapSelection, onClearMapSelection }) {
     deleteConversation,
     loadMessages,
     refresh,
-  } = useConversations();
+  } = conversationsState;
   const { user, signOut } = useAuth();
   const scrollRef = useRef(null);
 
-  // Sidebar is `fixed` now (see Sidebar.jsx's file-level comment), so it no
+  // Sidebar is `fixed` (see Sidebar.jsx's file-level comment), so it no
   // longer reserves space as a flex sibling — the content pane below has to
   // reserve matching space itself. Lifting `collapsed` here (via
   // onCollapsedChange) is what lets that space track the rail's actual
-  // width instead of guessing one fixed value.
+  // width instead of guessing one fixed value. This is page-local UI state
+  // (not chat data), so it's fine for it to live here rather than in
+  // ProtectedApp — it re-seeds from localStorage on remount anyway.
   const [sidebarCollapsed, setSidebarCollapsed] = useState(
     () => typeof window !== "undefined" && window.localStorage.getItem("sidebar:collapsed") === "1",
   );
@@ -99,10 +103,6 @@ export default function AIAssistant({ mapSelection, onClearMapSelection }) {
   };
 
   return (
-    // No more flex-row wrapper around Sidebar — it isn't a flow participant
-    // anymore. `pt-14 md:pt-0` clears the fixed mobile top bar; the
-    // `md:pl-*` swap clears the fixed desktop rail at whichever width it's
-    // currently at.
     <div className={`h-full pt-14 transition-[padding] duration-200 ease-in-out md:pt-0 ${sidebarCollapsed ? "md:pl-16" : "md:pl-72"}`}>
       <Sidebar
         conversations={conversations}

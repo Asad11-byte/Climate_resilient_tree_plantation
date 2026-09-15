@@ -1,5 +1,6 @@
 import SourceList from "./SourceList";
 import MarkdownAnswer from "./MarkdownAnswer";
+import SpeciesMentionChips from "./SpeciesMentionChips";
 
 function UserAvatar() {
   return (
@@ -49,8 +50,7 @@ function NoEvidenceCard({ response }) {
   );
 }
 
-function AnswerCard({ response }) {
-  const PLANT_CATEGORIES = ["tree_species", "plantation"];
+const PLANT_CATEGORIES = ["tree_species", "plantation"];
 
 function LeafBadge() {
   return (
@@ -77,20 +77,7 @@ function AnswerCard({ response }) {
         </p>
       )}
       <MarkdownAnswer className="mt-1">{response.answer}</MarkdownAnswer>
-      <SourceList sources={response.sources} />
-    </div>
-  );
-}
-  
-  
-  return (
-    <div className="max-w-[85%] rounded-lg border border-bark-500/15 bg-card px-4 py-3 shadow-sm">
-      {response.query_category && (
-        <p className="text-[0.7rem] font-semibold uppercase tracking-wide text-leaf-700">
-          {response.query_category.replace("_", " ")}
-        </p>
-      )}
-      <MarkdownAnswer className="mt-1">{response.answer}</MarkdownAnswer>
+      <SpeciesMentionChips species={response.mentioned_species} />
       <SourceList sources={response.sources} />
     </div>
   );

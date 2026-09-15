@@ -157,4 +157,11 @@ def get_chat_service() -> ChatService:
         retrieval_service=get_retrieval_service(),
         llm_provider=get_llm_provider(),
         environment_service=get_environment_service(),
+        # THE FIX: this line was missing, so ChatService's
+        # species_repository param stayed at its None default and
+        # mentioned_species silently returned [] on every response — no
+        # error anywhere, since ChatService._find_mentioned_species treats
+        # "no repository configured" and "repository unavailable" the same
+        # way (both degrade to []).
+        species_repository=get_species_repository(),
     )

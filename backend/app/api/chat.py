@@ -8,7 +8,7 @@ from app.core.dependencies import (
 )
 from app.core.exceptions import ProviderUnavailableError
 from app.repositories.chat_session_repository import truncate_title
-from app.schemas.chat import ChatRequest, ChatResponse
+from app.schemas.chat import ChatRequest, ChatResponse, SpeciesMentionSchema
 from app.schemas.retrieval import SourceSchema
 from app.services.chat.service import ChatService
 
@@ -72,4 +72,9 @@ async def chat(
         sources=[SourceSchema(**s.__dict__) for s in result.sources],
         model=result.model,
         session_id=session_id,
+        # THE FIX: this conversion was missing — ChatResult.mentioned_species
+        # had real data (once the dependencies.py fix above is also
+        # applied), but it never made it into the actual HTTP response
+        # because nothing here copied it over, same way `sources` does.
+        mentioned_species=[SpeciesMentionSchema(**m.__dict__) for m in result.mentioned_species],
     )

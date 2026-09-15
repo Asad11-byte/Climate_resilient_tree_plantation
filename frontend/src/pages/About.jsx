@@ -110,7 +110,7 @@ function ExpandableList({ items, accent }) {
 
 export default function About() {
   return (
-    <div className="max-w-2xl">
+    <div className="mx-auto max-w-2xl px-4">
       <h1 className="font-[var(--font-display)] text-2xl font-semibold text-soil-900">About this project</h1>
       <p className="mt-3 text-soil-900">
         This is a location-aware recommendation system for climate-resilient tree plantation in Mandi Bahauddin,

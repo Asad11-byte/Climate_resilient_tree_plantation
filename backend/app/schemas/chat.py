@@ -9,7 +9,7 @@ from app.schemas.retrieval import SourceSchema
 # seen your original app/schemas/chat.py). If your real file has extra
 # fields or validators beyond query/latitude/longitude/top_k and
 # query_category/evidence_available/answer/sources/model, carry those over
-# — only `session_id` is new here.
+# — only `session_id` and `mentioned_species` are new here.
 
 
 class ChatRequest(BaseModel):
@@ -22,6 +22,16 @@ class ChatRequest(BaseModel):
     session_id: Optional[UUID] = None
 
 
+class SpeciesMentionSchema(BaseModel):
+    """A species from tree_species that Groq's answer actually named,
+    matched server-side against real data — never inferred or fuzzy-
+    matched client-side. See app/services/species_linking/matcher.py for
+    the matching logic and its documented limitation (mention != endorsement)."""
+    id: str
+    common_name: str
+    scientific_name: Optional[str] = None
+
+
 class ChatResponse(BaseModel):
     query: str
     query_category: str
@@ -29,6 +39,7 @@ class ChatResponse(BaseModel):
     answer: str
     sources: List[SourceSchema] = Field(default_factory=list)
     model: Optional[str] = None
+    mentioned_species: List[SpeciesMentionSchema] = Field(default_factory=list)
     # Always populated on the way out — the frontend uses this to know which
     # session to attach the next message in this thread to.
     session_id: UUID

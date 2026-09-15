@@ -5,7 +5,6 @@ import "leaflet/dist/leaflet.css";
 import "../components/map/leafletIconFix";
 import LocationMarkerLayer from "../components/map/LocationMarkerLayer";
 import EnvironmentalPanel from "../components/map/EnvironmentalPanel";
-import { useEnvironment } from "../hooks/useEnvironment";
 import { useGeolocation } from "../hooks/useGeolocation";
 import { MANDI_BAHAUDDIN_RING } from "../components/map/mandiBahauddinRing";
 import { isPointInPolygon, boundsFromRing } from "../components/map/geo";
@@ -88,13 +87,24 @@ function ExpandIcon({ className = "" }) {
   );
 }
 
-export default function MapExplorer({ onSelect }) {
+// `mapSelection` ({ latitude, longitude } | null) and `environment`
+// ({ data, loading, error, fetchAt }) are now owned by ProtectedApp (see
+// App.jsx) and passed in as props, same reason chat/conversations were
+// lifted out of AIAssistant — this component no longer owns `position` or
+// `useEnvironment()` locally, so navigating away and back no longer loses
+// the clicked point or its fetched data.
+export default function MapExplorer({ onSelect, mapSelection, environment }) {
   const navigate = useNavigate();
-  const { data, loading, error, fetchAt } = useEnvironment();
-  const [position, setPosition] = useState(null);
+  const { data, loading, error, fetchAt } = environment;
   const [outsideNotice, setOutsideNotice] = useState(false);
   const [fitRequest, setFitRequest] = useState(0);
   const geolocation = useGeolocation();
+
+  // Derived, not stored — mapSelection is the single source of truth
+  // ({ latitude, longitude }); react-leaflet/geo helpers below all expect
+  // [lat, lon], so that conversion happens here, once, rather than keeping
+  // a second array-shaped copy of the same value in its own state.
+  const position = mapSelection ? [mapSelection.latitude, mapSelection.longitude] : null;
 
   const isMyLocationInDistrict = useMemo(
     () => (geolocation.position ? isPointInPolygon(...geolocation.position, MANDI_BAHAUDDIN_RING) : null),
@@ -107,7 +117,6 @@ export default function MapExplorer({ onSelect }) {
       return;
     }
     setOutsideNotice(false);
-    setPosition([lat, lon]);
     onSelect(lat, lon);
     fetchAt(lat, lon);
   };
