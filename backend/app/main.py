@@ -18,10 +18,10 @@ def create_app() -> FastAPI:
         ),
         version="0.1.0",
     )
-    CORS_ORIGINS = ["http://localhost:5173", "https://climate-resilient-tree-plantation.vercel.app"]
+
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=CORS_ORIGINS,
+        allow_origins=settings.cors_origins,
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
