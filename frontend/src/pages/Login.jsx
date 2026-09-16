@@ -11,6 +11,12 @@ import { useAuth } from "../context/AuthContext";
  */
 
 function ShowcasePanel() {
+  // Hidden below the lg breakpoint (1024px) — on phones and tablets this
+  // entire panel, SVG included, never renders (display: none via `hidden`,
+  // only overridden to `flex` at lg:). The branding text this panel
+  // carries is re-shown separately for mobile — see MobileBrandHeader below
+  // — since hiding this panel would otherwise remove the only "Tree
+  // Plantation AI" identity on the page for phone users.
   return (
     <div className="relative hidden overflow-hidden bg-brand-900 lg:flex lg:flex-col lg:justify-between lg:p-10">
       <svg
@@ -89,6 +95,31 @@ function ShowcasePanel() {
   );
 }
 
+/**
+ * Compact plain-text stand-in for the desktop panel's branding, shown only
+ * below lg where ShowcasePanel (and its SVG) is hidden entirely — no
+ * graphics, just enough identity that the mobile login screen isn't a bare,
+ * unbranded form.
+ */
+function MobileBrandHeader() {
+  return (
+    <div className="mb-6 flex items-center gap-2 lg:hidden">
+      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-900">
+        <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4 text-brand-400">
+          <path
+            d="M12 3c-4 3-7 6.5-7 10.5A7 7 0 0 0 12 21a7 7 0 0 0 7-7.5C19 9.5 16 6 12 3Z"
+            fill="currentColor"
+            fillOpacity="0.9"
+          />
+        </svg>
+      </span>
+      <span className="font-[var(--font-display)] text-base font-semibold text-soil-900">
+        Tree Plantation AI
+      </span>
+    </div>
+  );
+}
+
 export default function Login() {
   const { signInWithPassword, signUp, signInWithGoogle } = useAuth();
   const navigate = useNavigate();
@@ -133,8 +164,10 @@ export default function Login() {
     <div className="grid min-h-screen bg-page lg:grid-cols-2">
       <ShowcasePanel />
 
-      <div className="flex items-center justify-center px-4 py-12">
+      <div className="flex items-center justify-center px-4 py-8 sm:px-6 sm:py-12">
         <div className="w-full max-w-sm">
+          <MobileBrandHeader />
+
           <h1 className="font-[var(--font-display)] text-xl font-semibold text-soil-900">
             {mode === "signup" ? "Create an account" : "Sign in"}
           </h1>
@@ -159,9 +192,11 @@ export default function Login() {
                 id="email"
                 type="email"
                 required
+                autoComplete="email"
+                inputMode="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full rounded-lg border border-bark-500/25 bg-page px-3 py-2 text-sm text-soil-900 focus:border-leaf-600 focus:outline-none focus:ring-1 focus:ring-leaf-600"
+                className="w-full rounded-lg border border-bark-500/25 bg-page px-3 py-2.5 text-base text-soil-900 focus:border-leaf-600 focus:outline-none focus:ring-1 focus:ring-leaf-600 sm:text-sm"
               />
             </div>
             <div>
@@ -173,16 +208,17 @@ export default function Login() {
                 type="password"
                 required
                 minLength={6}
+                autoComplete={mode === "signup" ? "new-password" : "current-password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full rounded-lg border border-bark-500/25 bg-page px-3 py-2 text-sm text-soil-900 focus:border-leaf-600 focus:outline-none focus:ring-1 focus:ring-leaf-600"
+                className="w-full rounded-lg border border-bark-500/25 bg-page px-3 py-2.5 text-base text-soil-900 focus:border-leaf-600 focus:outline-none focus:ring-1 focus:ring-leaf-600 sm:text-sm"
               />
             </div>
 
             <button
               type="submit"
               disabled={submitting}
-              className="w-full rounded-lg bg-leaf-700 px-4 py-2.5 text-sm font-medium text-parchment-50 transition hover:bg-leaf-600 disabled:cursor-not-allowed disabled:opacity-50"
+              className="w-full rounded-lg bg-leaf-700 px-4 py-3 text-sm font-medium text-parchment-50 transition hover:bg-leaf-600 disabled:cursor-not-allowed disabled:opacity-50 sm:py-2.5"
             >
               {submitting ? "Please wait…" : mode === "signup" ? "Create account" : "Sign in"}
             </button>
@@ -197,9 +233,9 @@ export default function Login() {
           <button
             type="button"
             onClick={handleGoogle}
-            className="flex w-full items-center justify-center gap-2 rounded-lg border border-bark-500/25 bg-page px-4 py-2.5 text-sm font-medium text-soil-900 transition hover:bg-bark-500/10"
+            className="flex w-full items-center justify-center gap-2 rounded-lg border border-bark-500/25 bg-page px-4 py-3 text-sm font-medium text-soil-900 transition hover:bg-bark-500/10 sm:py-2.5"
           >
-            <svg viewBox="0 0 24 24" className="h-4 w-4">
+            <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0">
               <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" />
               <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.99.66-2.25 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.85A11 11 0 0 0 12 23z" />
               <path fill="#FBBC05" d="M5.84 14.09A6.6 6.6 0 0 1 5.5 12c0-.73.13-1.43.34-2.09V7.06H2.18A11 11 0 0 0 1 12c0 1.78.43 3.46 1.18 4.94z" />

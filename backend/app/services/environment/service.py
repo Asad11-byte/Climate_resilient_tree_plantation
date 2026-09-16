@@ -17,7 +17,23 @@ NASA POWER almost always supplies) are populated. A row cached while a
 provider was broken — e.g. all soil fields null from before the GEE
 SoilGrids fix — would otherwise be served as a false "complete" answer
 forever, even after providers start working for that area. See
-_BACKFILL_FIELDS / _is_incomplete below.
+_SOIL_BACKFILL_FIELDS / _VEGETATION_BACKFILL_FIELDS / _is_incomplete below.
+
+THE FIX (this revision): soil and vegetation are now checked as two
+INDEPENDENT categories, not one flat list. Previously, a row counted as
+"incomplete" only if literally every backfill field was null. That meant a
+row where soil succeeded but Sentinel legitimately found no cloud-free
+image (SentinelProvider returns None for that — not an error) got cached
+with soil populated and ndvi/ndwi/land_cover null, and from then on was
+treated as permanently "complete" — soil being present was enough to skip
+re-querying, so vegetation fields for that location could never be filled
+in again, even on a later request where a cloud-free image existed. Now a
+row missing an ENTIRE category (all of soil, or all of vegetation) is
+still treated as incomplete and re-queried, independent of whether the
+other category already succeeded. A single missing field within an
+otherwise-populated category (e.g. just land_cover, with ndvi/ndwi
+present) is still left alone — same original reasoning: a point can
+legitimately be missing one specific field without needing a retry.
 """
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -30,13 +46,9 @@ from app.services.environment.base import EnvironmentalReading, EnvironmentDataP
 
 logger = get_logger(__name__)
 
-# Fields worth re-querying live providers for if a cached row is missing
-# them. Deliberately excludes temperature/rainfall — NASA POWER has
-# near-complete global coverage, so a null there usually means a genuine
-# gap, not a provider that was broken at cache-write time.
-_BACKFILL_FIELDS = (
-    "soil_ph", "clay", "sand", "organic_carbon", "ndvi", "ndwi", "land_cover",
-)
+_SOIL_BACKFILL_FIELDS = ("soil_ph", "clay", "sand", "organic_carbon")
+_VEGETATION_BACKFILL_FIELDS = ("ndvi", "ndwi", "land_cover")
+_BACKFILL_FIELDS = _SOIL_BACKFILL_FIELDS + _VEGETATION_BACKFILL_FIELDS
 
 
 @dataclass
@@ -127,14 +139,14 @@ class EnvironmentDataService:
 
     @staticmethod
     def _is_incomplete(record: Dict[str, Any]) -> bool:
-        """A cached row counts as incomplete if it's missing every
-        backfill-worthy field — i.e. it looks like it was written before any
-        soil/vegetation provider worked for this area, rather than a
-        genuine "no data here" result that happened to leave some fields
-        null. Requiring ALL of them null (not just one) avoids re-querying
-        every request for a row that's legitimately missing just NDVI due
-        to cloud cover, say."""
-        return all(record.get(field) is None for field in _BACKFILL_FIELDS)
+        """See THE FIX in the module docstring. A cached row is incomplete
+        if soil is entirely null, OR vegetation is entirely null — checked
+        as two independent categories rather than one flat list, so a row
+        with real data in one category still gets the OTHER category
+        backfilled instead of being treated as permanently complete."""
+        soil_missing = all(record.get(f) is None for f in _SOIL_BACKFILL_FIELDS)
+        vegetation_missing = all(record.get(f) is None for f in _VEGETATION_BACKFILL_FIELDS)
+        return soil_missing or vegetation_missing
 
     @staticmethod
     def _missing_fields(record: Dict[str, Any]) -> List[str]:

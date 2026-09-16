@@ -13,6 +13,16 @@ VERCEL / PRODUCTION
 The JSON-based production configuration is preferred because Vercel
 does not have access to the local secrets/gee-key.json file.
 
+FALLBACK BEHAVIOR: if GEE_SERVICE_ACCOUNT_KEY_JSON is set but invalid or
+incomplete (empty, malformed JSON, missing required fields — e.g. a
+leftover/placeholder value from setting up the Vercel deployment while
+still developing locally), this falls back to GEE_SERVICE_ACCOUNT_KEY_PATH
+instead of failing outright, PROVIDED a key path is actually configured.
+This is deliberate: a broken JSON env var should not silently break local
+development just because both variables happen to be present in .env at
+once. Which source actually succeeded is logged at INFO level either way,
+so this is diagnosable without reading this file's source.
+
 Both SoilGridsGEEProvider and SentinelProvider can call
 ensure_initialized() before using ee.* APIs.
 """
@@ -37,6 +47,7 @@ _init_lock = threading.Lock()
 
 # Process-level initialization state.
 _initialized = False
+_initialized_via: Optional[str] = None  # "key_json" | "key_path" — for diagnostics only
 
 
 def _load_key_json(key_json: str) -> Dict[str, Any]:
@@ -143,17 +154,22 @@ def _load_key_file(key_path: str) -> Dict[str, Any]:
 
 def _get_credentials(
     settings: Settings,
-) -> tuple[ee.ServiceAccountCredentials, str, Optional[str]]:
+) -> tuple[ee.ServiceAccountCredentials, str, Optional[str], str]:
     """
     Build Earth Engine service-account credentials.
 
     Priority:
 
-    1. GEE_SERVICE_ACCOUNT_KEY_JSON
-    2. GEE_SERVICE_ACCOUNT_KEY_PATH
+    1. GEE_SERVICE_ACCOUNT_KEY_JSON — tried first if present at all.
+    2. GEE_SERVICE_ACCOUNT_KEY_PATH — tried if (1) wasn't configured, OR
+       if (1) was configured but failed validation (see module docstring
+       for why this falls back instead of raising immediately).
 
     The email is extracted from the JSON when possible, so production
     does not need a separate GEE_SERVICE_ACCOUNT_EMAIL variable.
+
+    Returns (credentials, email, project_id, source_label) — source_label
+    is "key_json" or "key_path", logged by the caller for diagnostics.
     """
 
     key_json = getattr(
@@ -174,30 +190,46 @@ def _get_credentials(
         None,
     )
 
+    key_json_error: Optional[Exception] = None
+
     # ---------------------------------------------------------
-    # Production / Vercel
+    # Production / Vercel — tried first if configured at all
     # ---------------------------------------------------------
     if key_json:
-        key_data = _load_key_json(key_json)
+        try:
+            key_data = _load_key_json(key_json)
 
-        email = key_data.get("client_email")
+            email = key_data.get("client_email")
+            if not email:
+                raise ProviderUnavailableError(
+                    "client_email missing from GEE_SERVICE_ACCOUNT_KEY_JSON"
+                )
 
-        if not email:
-            raise ProviderUnavailableError(
-                "client_email missing from GEE_SERVICE_ACCOUNT_KEY_JSON"
+            credentials = ee.ServiceAccountCredentials(
+                email,
+                key_data=key_json,
             )
 
-        credentials = ee.ServiceAccountCredentials(
-            email,
-            key_data=key_json,
-        )
+            project_id = key_data.get("project_id")
 
-        project_id = key_data.get("project_id")
+            return credentials, email, project_id, "key_json"
 
-        return credentials, email, project_id
+        except ProviderUnavailableError as exc:
+            # Don't raise yet — remember this and try key_path next, if
+            # one is configured. This is the actual fix: previously an
+            # invalid/leftover KEY_JSON value would break local dev even
+            # when a perfectly valid KEY_PATH was also present, because
+            # this branch raised immediately instead of falling through.
+            key_json_error = exc
+            logger.warning(
+                "GEE_SERVICE_ACCOUNT_KEY_JSON was set but invalid (%s) — "
+                "falling back to GEE_SERVICE_ACCOUNT_KEY_PATH if configured",
+                exc,
+            )
 
     # ---------------------------------------------------------
-    # Local development
+    # Local development — also the fallback if key_json was
+    # present but broken
     # ---------------------------------------------------------
     if key_path:
         key_data = _load_key_file(key_path)
@@ -220,7 +252,14 @@ def _get_credentials(
 
         project_id = key_data.get("project_id")
 
-        return credentials, email, project_id
+        return credentials, email, project_id, "key_path"
+
+    # Neither worked. If key_json was configured but invalid, surface
+    # that specific error rather than the generic "nothing configured"
+    # message — it's more actionable (you HAVE credentials, they're wrong,
+    # vs. you have none at all).
+    if key_json_error is not None:
+        raise key_json_error
 
     raise ProviderUnavailableError(
         "No Google Earth Engine service-account credentials configured. "
@@ -236,7 +275,7 @@ def _initialize_sync(settings: Settings) -> None:
     Called through asyncio.to_thread() so initialization does not block
     the FastAPI event loop.
     """
-    global _initialized
+    global _initialized, _initialized_via
 
     if _initialized:
         return
@@ -246,7 +285,7 @@ def _initialize_sync(settings: Settings) -> None:
             return
 
         try:
-            credentials, email, project_id = _get_credentials(settings)
+            credentials, email, project_id, source = _get_credentials(settings)
 
             # Prefer the project from the service-account JSON.
             #
@@ -281,10 +320,12 @@ def _initialize_sync(settings: Settings) -> None:
             ) from exc
 
         _initialized = True
+        _initialized_via = source
 
         logger.info(
-            "Earth Engine session initialized for %s",
+            "Earth Engine session initialized for %s (credentials source: %s)",
             email,
+            source,
         )
 
 
@@ -333,7 +374,8 @@ def reset_initialization() -> None:
 
     Do not normally call this during application runtime.
     """
-    global _initialized
+    global _initialized, _initialized_via
 
     with _init_lock:
         _initialized = False
+        _initialized_via = None

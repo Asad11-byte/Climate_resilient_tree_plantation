@@ -87,6 +87,54 @@ function ExpandIcon({ className = "" }) {
   );
 }
 
+function CursorClickIcon({ className = "" }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className={className} aria-hidden="true">
+      <path d="M9 4.5 19 12l-4.6 1.3L12 19 9 4.5Z" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+/**
+ * Shown in place of the environmental readings when nothing has been picked
+ * yet. Previously the "no selection" case was communicated only by a small
+ * grey line of helper text plus EnvironmentalPanel's own empty state, and
+ * the primary action button was hidden entirely — so a first-time user had
+ * no clear signal about what the page wanted from them, or why they
+ * couldn't proceed. This makes the prerequisite explicit and actionable.
+ */
+function NoSelectionPrompt({ onShowDistrict, onUseMyLocation, geolocationEnabled }) {
+  return (
+    <div className="rounded-lg border border-dashed border-leaf-600/40 bg-leaf-100/40 px-4 py-5 text-center">
+      <span className="mx-auto flex h-9 w-9 items-center justify-center rounded-full bg-leaf-600/15">
+        <CursorClickIcon className="h-4.5 w-4.5 text-leaf-700" />
+      </span>
+      <p className="mt-3 text-sm font-semibold text-soil-900">No location selected yet</p>
+      <p className="mx-auto mt-1.5 max-w-[15rem] text-xs leading-relaxed text-bark-700">
+        Click any point inside the green district boundary to load its soil, climate, and vegetation data.
+      </p>
+      <div className="mt-3.5 flex flex-col gap-1.5">
+        {!geolocationEnabled && (
+          <button
+            type="button"
+            onClick={onUseMyLocation}
+            className="text-xs font-medium text-leaf-700 underline decoration-leaf-600/40 underline-offset-2 transition hover:decoration-leaf-600"
+          >
+            Or use my current location
+          </button>
+        )}
+        <button
+          type="button"
+          onClick={onShowDistrict}
+          className="text-xs font-medium text-bark-700 underline decoration-bark-500/30 underline-offset-2 transition hover:text-soil-900"
+        >
+          Show the full district
+        </button>
+      </div>
+    </div>
+  );
+}
+
 // `mapSelection` ({ latitude, longitude } | null) and `environment`
 // ({ data, loading, error, fetchAt }) are now owned by ProtectedApp (see
 // App.jsx) and passed in as props, same reason chat/conversations were
@@ -105,6 +153,7 @@ export default function MapExplorer({ onSelect, mapSelection, environment }) {
   // [lat, lon], so that conversion happens here, once, rather than keeping
   // a second array-shaped copy of the same value in its own state.
   const position = mapSelection ? [mapSelection.latitude, mapSelection.longitude] : null;
+  const hasSelection = Boolean(position);
 
   const isMyLocationInDistrict = useMemo(
     () => (geolocation.position ? isPointInPolygon(...geolocation.position, MANDI_BAHAUDDIN_RING) : null),
@@ -166,10 +215,17 @@ export default function MapExplorer({ onSelect, mapSelection, environment }) {
 
       <div className="mt-4 grid grid-cols-1 gap-6 lg:grid-cols-[1fr_360px]">
         <div className="relative h-[420px] overflow-hidden rounded-xl border border-bark-500/15 shadow-sm sm:h-[520px]">
-          <div className="pointer-events-none absolute left-3 top-3 z-[500] rounded-lg border border-bark-500/15 bg-card/95 px-3 py-2 shadow-sm">
-            <p className="flex items-center gap-1.5 text-xs font-semibold text-soil-900"><LocationIcon className="h-3.5 w-3.5 text-leaf-700" /> Click within the green boundary</p>
-            <p className="mt-0.5 text-[0.7rem] text-bark-700">Outside areas are not covered.</p>
-          </div>
+          {/* The on-map hint stays visible until a point is actually chosen,
+              then gets out of the way — once the user has selected, the
+              instruction is noise and the panel carries the state instead. */}
+          {!hasSelection && (
+            <div className="pointer-events-none absolute left-3 top-3 z-[500] rounded-lg border border-leaf-600/30 bg-card/95 px-3 py-2 shadow-sm">
+              <p className="flex items-center gap-1.5 text-xs font-semibold text-soil-900">
+                <LocationIcon className="h-3.5 w-3.5 text-leaf-700" /> Click within the green boundary
+              </p>
+              <p className="mt-0.5 text-[0.7rem] text-bark-700">Outside areas are not covered.</p>
+            </div>
+          )}
           <MapContainer
             center={MANDI_BAHAUDDIN_CENTER}
             zoom={11}
@@ -208,29 +264,44 @@ export default function MapExplorer({ onSelect, mapSelection, environment }) {
             {selectionLabel ? (
               <p className="mt-1 text-xs text-bark-700">Selected point: <span className="font-medium text-soil-900">{selectionLabel}</span></p>
             ) : (
-              <p className="mt-1 text-xs text-bark-700">Choose a point on the map to begin.</p>
+              <p className="mt-1 text-xs text-bark-700">Nothing selected yet.</p>
             )}
           </div>
-          {outsideNotice && !position && (
+
+          {outsideNotice && !hasSelection && (
             <p className="mb-3 rounded-lg border border-warning/25 bg-warning-subtle px-3 py-2 text-xs text-warning">
               That point is outside the district boundary. Select a point within the green outline to continue.
             </p>
           )}
-          <EnvironmentalPanel
-            position={position}
-            loading={loading}
-            error={error}
-            data={data}
-            onRetry={() => position && fetchAt(position[0], position[1])}
-          />
-          {position && (
-            <button
-              onClick={handleAskAboutLocation}
-              className="mt-4 w-full rounded-lg bg-leaf-700 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-leaf-600"
-            >
-              Ask about this location →
-            </button>
+
+          {hasSelection ? (
+            <EnvironmentalPanel
+              position={position}
+              loading={loading}
+              error={error}
+              data={data}
+              onRetry={() => position && fetchAt(position[0], position[1])}
+            />
+          ) : (
+            <NoSelectionPrompt
+              geolocationEnabled={geolocation.enabled}
+              onUseMyLocation={geolocation.toggle}
+              onShowDistrict={() => setFitRequest((value) => value + 1)}
+            />
           )}
+
+          {/* Rendered in both states rather than hidden until a point exists:
+              a disabled control with a reason tells a first-time user what
+              the page is for and what's blocking them, where an absent
+              control tells them nothing. */}
+          <button
+            onClick={handleAskAboutLocation}
+            disabled={!hasSelection}
+            title={hasSelection ? undefined : "Select a location on the map first"}
+            className="mt-4 w-full rounded-lg bg-leaf-700 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-leaf-600 disabled:cursor-not-allowed disabled:bg-bark-500/25 disabled:text-bark-700 disabled:hover:bg-bark-500/25"
+          >
+            {hasSelection ? "Ask about this location →" : "Select a location first"}
+          </button>
         </div>
       </div>
     </div>

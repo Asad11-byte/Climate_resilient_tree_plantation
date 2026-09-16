@@ -1,6 +1,33 @@
 import { useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 const MAX_TEXTAREA_HEIGHT_PX = 160;
+
+function PinIcon({ className = "" }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z" />
+    </svg>
+  );
+}
+
+function PinOffIcon({ className = "" }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M12 21s7-5.4 7-12a7 7 0 0 0-11.5-5.4" />
+      <path d="M5.4 7.4A7 7 0 0 0 5 9c0 6.6 7 12 7 12" />
+      <path d="M3 3l18 18" />
+    </svg>
+  );
+}
 
 export default function ChatInput({ onSend, disabled, locationLabel, onClearLocation }) {
   const [value, setValue] = useState("");
@@ -37,19 +64,38 @@ export default function ChatInput({ onSend, disabled, locationLabel, onClearLoca
 
   return (
     <form onSubmit={handleSubmit} className="space-y-2">
-      {locationLabel && (
-        <div className="flex items-center gap-2 text-xs text-bark-700">
-          <span className="inline-flex items-center gap-1 rounded-full bg-leaf-100 px-2.5 py-1 text-leaf-700">
-            <svg viewBox="0 0 24 24" fill="currentColor" className="h-3 w-3">
-              <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z" />
-            </svg>
-            {locationLabel}
-          </span>
-          <button type="button" onClick={onClearLocation} className="underline hover:text-soil-900">
-            Remove
-          </button>
-        </div>
-      )}
+      {/* This row now renders in BOTH states rather than only when a
+          location is attached. Previously the absence of a location was
+          communicated by the absence of UI, which reads as "nothing to
+          know here" instead of "this answer won't be location-specific" —
+          and it also made the input area shift vertically the moment a
+          location got attached. */}
+      <div className="flex items-center gap-2 text-xs text-bark-700">
+        {locationLabel ? (
+          <>
+            <span className="inline-flex items-center gap-1 rounded-full bg-leaf-100 px-2.5 py-1 text-leaf-700">
+              <PinIcon className="h-3 w-3" />
+              {locationLabel}
+            </span>
+            <button type="button" onClick={onClearLocation} className="underline hover:text-soil-900">
+              Remove
+            </button>
+          </>
+        ) : (
+          <>
+            <span className="inline-flex items-center gap-1 rounded-full bg-bark-500/10 px-2.5 py-1 text-bark-700">
+              <PinOffIcon className="h-3 w-3" />
+              No location selected
+            </span>
+            <Link
+              to="/map"
+              className="underline decoration-leaf-600/40 underline-offset-2 transition hover:text-leaf-700 hover:decoration-leaf-600"
+            >
+              Pick one on the map
+            </Link>
+          </>
+        )}
+      </div>
 
       <div className="flex items-end gap-2 rounded-3xl border border-bark-500/20 bg-card px-4 py-2.5 shadow-md transition focus-within:border-leaf-600 focus-within:ring-1 focus-within:ring-leaf-600">
         <textarea

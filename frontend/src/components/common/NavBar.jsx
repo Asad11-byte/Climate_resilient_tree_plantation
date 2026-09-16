@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import logoMark from "../../assets/logo-mark.png";
-import ThemeToggle from "./ThemeToggle";
+import ThemeToggle from "./Settings";
 
 const LINKS = [
   { to: "/", label: "Home", end: true },
